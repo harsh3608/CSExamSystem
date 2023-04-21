@@ -4,7 +4,7 @@
     <mat-spinner></mat-spinner>
   </div>
 </ng-container>
-<div class="card pl-5">
+<div class="card pl-5" *ngIf="!isLoading">
 
   <p-table #dt [value]="questions" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,50]" [rows]="10"

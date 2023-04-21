@@ -6,7 +6,7 @@
   </div>
 </ng-container>
 
-<div class="card pl-5">
+<div class="card pl-5" *ngIf="!isLoading">
   <p-table #dt [value]="exams" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
