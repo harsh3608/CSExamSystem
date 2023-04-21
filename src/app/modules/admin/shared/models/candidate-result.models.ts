@@ -35,4 +35,5 @@ export interface ResultDetails {
   question: string
   candiateExamUserId: number
   isCorrect: boolean
+  marks: number
 }

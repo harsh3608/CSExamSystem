@@ -15,7 +15,7 @@ export class ResultService {
     return this.http.get<CandidateResultResponse>(candidateExamServerUrl + '/CandidateResultList?pageIndex=1&pageSize=100');
   }
 
-  getCandidateResultDetails(id: number):Observable<ResultDetailsResponse> {
-    return this.http.get<ResultDetailsResponse>(candidateExamServerUrl + 'CandidateResultDetails?candidateExamId='+id);
+  getCandidateResultDetails(id: number, userId: string):Observable<ResultDetailsResponse> {
+    return this.http.get<ResultDetailsResponse>(candidateExamServerUrl + '/CandidateResultDetails?candidateExamId='+id+'&userId='+userId);
   }
 }

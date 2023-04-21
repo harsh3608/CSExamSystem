@@ -7,8 +7,20 @@
   background-color: white;
 }
 
-.badge {
+.btn {
   scale: 1.7;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+/* .badge {
+  scale: 1.4;
+  margin-left: 5%;
+  margin-right: 5%;
+
+} */
+
+.spinner {
+  padding: 20%;
+  padding-left: 44%;
 }

@@ -66,7 +66,7 @@ export class QuestionsUpdateComponent implements OnInit {
     this.route.paramMap.subscribe({
       next: (params) => {
         //const id = params.get('id');
-        this.route.snapshot.params['id'];
+        //this.route.snapshot.params['id'];
         if (this.route.snapshot.params['id']) {
           setTimeout(() => {
             this.questionService.getQuestionsById(this.route.snapshot.params['id']).subscribe({
