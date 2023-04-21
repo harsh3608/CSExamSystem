@@ -1,0 +1,56 @@
+/* .container {
+  width: 550px;
+  height: 100%;
+  margin-left: center;
+  margin-right: center;
+  margin-top: center;
+  margin-bottom: center;
+  float: right;
+  background-color: aliceblue;
+} */
+
+.box {
+  display: flex;
+  flex-direction: row;
+  /* height: 70%; */
+  height: 500px;
+  margin-top: 8%;
+  margin-left: 20%;
+
+}
+
+.container {
+  width: 40%;
+  margin-left: 0%;
+  /* margin-right: center;
+  margin-top: center;
+  margin-bottom: center; */
+  float: right;
+  background-color: aliceblue;
+}
+
+.card {
+  width: 40%;
+  height: match-parent;
+
+}
+
+.back {
+  height: 100%;
+  width: 100%;
+
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.spinner {
+  padding: 20%;
+  padding-left: 44%;
+}
+
+form {
+  /* margin-top: 30%; */
+  margin-top: 10%;
+}

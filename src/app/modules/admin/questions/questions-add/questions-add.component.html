@@ -1,0 +1,164 @@
+<app-admin-menu></app-admin-menu>
+<div class="container border p-3 rounded-3">
+  <form [formGroup]="addForm" (ngSubmit)="submitAddForm()">
+    <div class="row g-0">
+      <div class="col text-center p-2 mb-3 ">
+        <span class="fs-3">Add Question</span>
+      </div>
+      <hr/>
+
+      <div class="row mb-3">
+        <div class="col">
+          <div style="margin-bottom: 10px;">
+            <label for="technologyId" class="form-label">Technology</label>
+            <select class="form-control" id="technologyId" formControlName="technologyId">
+              <option *ngFor="let opt of technologies" [value]="opt.id">{{opt.technologyName}}</option>
+            </select>
+            <div class="form-text text-danger"
+              *ngIf="technologyId.errors?.['required'] && (technologyId.touched || technologyId.dirty)">
+              Technology is Required !
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div style="margin-bottom: 10px;">
+            <label for="experienceLevelId" class="form-label">Experience Level</label>
+            <select class="form-control" id="experienceLevelId" formControlName="experienceLevelId">
+              <option *ngFor="let opt of experienceLevels;let i=index" [value]="i+1">{{opt}}</option>
+            </select>
+            <div class="form-text text-danger"
+              *ngIf="experienceLevelId.errors?.['required'] && (experienceLevelId.touched || experienceLevelId.dirty)">
+              Experience Level is Required !
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col">
+          <label for="marks" class="form-label">Marks</label>
+          <input type="number" class="form-control" id="marks" maxlength="4" formControlName="marks">
+          <div class="form-text text-danger" *ngIf="marks.errors?.['required'] && (marks.touched || marks.dirty)">
+            Marks are Required !
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="timeSlot" class="form-label">Time Slot</label>
+          <input type="number" class="form-control" id="timeSlot" maxlength="4" formControlName="timeSlot">
+          <div class="form-text text-danger"
+            *ngIf="timeSlot.errors?.['required'] && (timeSlot.touched || timeSlot.dirty)">
+            Time Slot is Required !
+          </div>
+        </div> -->
+
+        <div class="col">
+          <div class="mb-2">IsActive?</div>
+          <mat-slide-toggle style="scale: 1;margin-left: 0%; margin-top: 0%" class="form-control" id="isActive"
+            formControlName="isActive"></mat-slide-toggle>
+          <span class="slider round"></span>
+          <div class="form-text text-danger"
+            *ngIf="isActive.errors?.['required'] && (isActive.touched || isActive.dirty)">
+            Active Status is Required !
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="questionName" class="form-label">Question</label>
+          <ckeditor class="form-control" id="questionName" formControlName="questionName"></ckeditor>
+        </div>
+
+        <div class="form-text text-danger"
+          *ngIf="questionName.errors?.['required'] && (questionName.touched || questionName.dirty)">
+          Question is Required !
+        </div>
+      </div>
+
+      <div class="row">
+        <form [formGroup]="optCounts">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="optionsCount" class="form-label">Enter number of options to add</label>
+              <input type="number" (change)="getOptionsCount($event)" class="form-control" id="optionsCount"
+                maxlength="2" formControlName="optionsCount">
+            </div>
+            <div class="col">
+              <button class="btn btn-success" style="margin-top: 11%;" type="button" (click)="addOption()">
+                Add Options <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+        </form>
+      </div>
+
+
+
+      <div class="row mb-5" formArrayName="options">
+        <!-- <div class="mb-3">
+          <button type="button" (click)="addOption()" [disabled]="addOptionClicked==4">Add Option</button>
+        </div> -->
+        <div *ngFor="let option of options().controls ; let i = index">
+          <div [formGroupName]="i">
+            <div class="row mb-3">
+              <div>Option {{i+1 }}</div>
+              <div class="col">
+                <label for="questionOptionName" class="form-label">Question Option Name</label>
+                <input type="text" class="form-control" id="questionOptionName" formControlName="questionOptionName">
+                <!-- <div class="form-text text-danger"
+                  *ngIf="questionOptionName.errors?.['required'] && (questionOptionName.touched || questionOptionName.dirty)">
+                  Question Option Name is Required !
+                </div> -->
+              </div>
+
+              <div class="col">
+                <label for="questionLabelOption" class="form-label">Question Option Label</label>
+                <select class="form-control" id="questionLabelOption" formControlName="questionLabelOption">
+                  <!-- <option *ngFor="let alphabet of alphabets" value="alphabet">{{alphabet}}</option> -->
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
+                <!-- <div class="form-text text-danger"
+                  *ngIf="questionLabelOption.errors?.['required'] && (questionLabelOption.touched || questionLabelOption.dirty)">
+                  Question Option Label is Required !
+                </div> -->
+              </div>
+
+              <div class="col">
+                <div class="mb-2">Correct Option</div>
+                <mat-slide-toggle style="scale: 1;margin-left: 0%; margin-top: 0%" class="form-control"
+                  id="correctAnswer" formControlName="correctAnswer"></mat-slide-toggle>
+                <span class="slider round"></span>
+                <!-- <div class="form-text text-danger"
+              *ngIf="correctAnswer.errors?.['required'] && (correctAnswer.touched || correctAnswer.dirty)">
+              Correct Answer is Required !
+              </div> -->
+
+              </div>
+
+              <div class="col">
+                <button style="margin-top: 11%;" class="btn btn-danger" (click)="removeOption(i)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-6 offset-3">
+          <div class="d-grid">
+            <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Add Question</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </form>
+</div>

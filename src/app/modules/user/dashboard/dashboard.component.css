@@ -1,0 +1,47 @@
+.mat-toolbar{
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: auto;
+  background-color: white;
+}
+
+input {
+  float: left;
+  width: 92%;
+}
+
+button {
+  float: right;
+}
+
+.spacer {
+  flex: 1 1 auto
+}
+
+h2{
+  text-align: center;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+}
+
+.spinner{
+  /* margin-top: 20%;
+  margin-right: 40%;
+  margin-bottom: auto;
+  margin-left: 40%; */
+  padding: 20%;
+  padding-left: 44%;
+}
+
+.mat-grid-tile{
+  background-color: rgb(255, 255, 255);
+}

@@ -1,0 +1,111 @@
+<app-admin-menu></app-admin-menu>
+<div class="card pl-5">
+
+  <p-table #dt [value]="questions" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,50]" [rows]="10"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [loading]="loading"
+    [paginator]="true" [filterDelay]="0"
+    [globalFilterFields]="['questionName', 'isActiveVM', 'experienceLevelVM', 'technologyVM','lastModifiedOn']">
+
+    <ng-template pTemplate="caption">
+      <div class="row table-header">
+        <div class="col" style="margin-top: 0.5%;">
+          <span>Manage Questions</span>
+        </div>
+        <div class="col" style=" padding-left: 25%; ">
+          <p-button icon="pi pi-plus" routerLink="/questions-add" label="Add"></p-button>
+
+          <span style="margin-left: 3%;" class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" id="search" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Global Search" />
+          </span>
+
+          <button style="margin-left: 3%;" pButton label="Clear" class="p-button-outlined " icon="pi pi-filter-slash"
+            (click)="clear(dt)"></button>
+        </div>
+
+      </div>
+    </ng-template>
+    <ng-template pTemplate="colgroup">
+      <colgroup>
+        <!-- <col [style.width]="'40px'"> -->
+        <!-- <col [style.width]="'150px'">
+        <col [style.width]="'300px'">
+        <col [style.width]="'80px'"> -->
+        <!-- <col [style.width]="'50px'"> -->
+        <!-- <col [style.width]="'50px'">
+        <col [style.width]="'200px'">
+        <col [style.width]="'40px'"> -->
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <!-- <th pSortableColumn="id">Question Id<p-sortIcon field="id"></p-sortIcon>
+        </th> -->
+        <th pSortableColumn="technologyVM">Technology <p-sortIcon field="technologyVM"></p-sortIcon>
+        </th>
+        <th pSortableColumn="questionName">Question <p-sortIcon field="questionName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="experienceLevelVM">Experience Level<p-sortIcon field="experienceLevelVM"></p-sortIcon>
+        </th>
+        <!-- <th pSortableColumn="marks">Marks<p-sortIcon field="marks"></p-sortIcon>
+        </th> -->
+        <th pSortableColumn="isActiveVM">Is Active?<p-sortIcon field="isActiveVM"></p-sortIcon>
+        </th>
+        <th pSortableColumn="lastModifiedOn">Last Modified<p-sortIcon field="lastModifiedOn"></p-sortIcon>
+        </th>
+        <th>Action</th>
+      </tr>
+      <tr class="filter">
+        <!-- <th>
+          <p-columnFilter type="text" field="id"></p-columnFilter>
+        </th> -->
+        <th>
+          <p-columnFilter type="text" field="technologyVM"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="questionName"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="experienceLevelVM"></p-columnFilter>
+
+        </th>
+        <!-- <th>
+          <p-columnFilter type="text" field="marks"></p-columnFilter>
+        </th> -->
+        <th>
+          <p-columnFilter type="text" field="isActiveVM"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="lastModifiedOn"></p-columnFilter>
+        </th>
+        <th>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-question >
+      <tr>
+
+        <!-- <td>{{question.id}}</td> -->
+        <td>{{getTechById(question.technologyId)}}</td>
+        <td>
+          <p>{{question.questionName}}</p>
+        </td>
+        <td>
+          <p>{{ getExperienceLevels(question.experienceLevelId)}}</p>
+        </td>
+        <!-- <td>{{question.marks}}</td> -->
+        <!-- <td>{{isActiveStatus(question.isActive)}}</td> -->
+        <td>{{question.isActive? "Yes": "No"}}</td>
+        <td>{{question.lastModifiedOn | date: 'MM-dd-yyyy hh:mm:ss a'}}</td>
+
+        <td>
+          <button type="submit" class="btn btn-warning mt-2 " [routerLink]="['/questions-update/',question.id]">
+            <i class="fa fa-pencil-square-o " style="scale: 2.0;"></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

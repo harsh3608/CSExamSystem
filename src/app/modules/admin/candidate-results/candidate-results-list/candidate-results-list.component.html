@@ -1,0 +1,73 @@
+<app-admin-menu></app-admin-menu>
+<div class="card pl-5">
+  <p-table #dt [value]="results" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+    [globalFilterFields]="['examDate', 'status' ]">
+
+    <ng-template pTemplate="caption">
+      <div class="row table-header">
+        <div class="col" style="margin-top: 0.5%;">
+          <span>Exam Results</span>
+        </div>
+        <div class="col" style=" padding-left: 25%; ">
+
+          <span style="margin-left: 3%;" class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" id="search" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Global Search" />
+          </span>
+
+          <button style="margin-left: 3%;" pButton label="Clear" class="p-button-outlined " icon="pi pi-filter-slash"
+            (click)="clear(dt)"></button>
+        </div>
+
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="examDate">Exam Date <p-sortIcon field="examDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="fullname">Candidate's Name <p-sortIcon field="fullname"></p-sortIcon>
+        </th>
+        <th pSortableColumn="obtainedScore">Obtained Marks <p-sortIcon field="obtainedScore"></p-sortIcon>
+        </th>
+        <th pSortableColumn="totalScore">Total Marks <p-sortIcon field="totalScore"></p-sortIcon>
+        </th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter type="text" field="examDate"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="fullname"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="obtainedScore"></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter type="text" field="totalScore"></p-columnFilter>
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-result>
+      <tr>
+        <td>{{result.examDate | date: 'dd-MMM-yyyy'}}</td>
+        <td>{{result.fullname}}</td>
+        <td>{{result.obtainedScore}}</td>
+        <td>{{result.totalScore}}</td>
+        <td>
+          <button [routerLink]="['/result-details/',result.candidateExamId]" class="btn btn-warning"><i class="fa fa-sharp fa-solid fa-eye"></i>
+          </button>
+        </td>
+
+      </tr>
+
+    </ng-template>
+
+  </p-table>
+</div>

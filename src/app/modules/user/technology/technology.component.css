@@ -1,0 +1,30 @@
+.blue {
+  float: right;
+}
+
+.red {
+  float: left
+}
+
+p {
+  font-weight: 450;
+  font-size: large;
+  color: black;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: large;
+  color: black;
+}
+
+.container {
+  width: 130px;
+  background-color: rgb(11, 131, 51);
+  float: left;
+}
+
+.title {
+  text-align: center;
+
+}

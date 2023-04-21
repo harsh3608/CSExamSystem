@@ -1,0 +1,20 @@
+
+<div class="title"><h1 mat-dialog-title><strong>{{data.technologyName}}</strong></h1></div>
+<hr/>
+<div mat-dialog-content>
+  <p>This module includes a set of 40 randomly chosen questions of {{data.technologyName}}.</p>
+  <p>To test the candidate's prior knowledge of the topic.</p>
+
+  <div class="container border p-3 rounded-3">
+    <i class="fa fa-clock-o" style="scale: 2.0;"></i> &nbsp; 40 mins
+  </div>
+</div>
+
+<hr/>
+<div mat-dialog-actions class="red">
+    <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+</div>
+<div mat-dialog-actions class="blue">
+    <button class="btn btn-primary" (click)="onTakeTest(data.id)">Take Test</button>
+</div>
+

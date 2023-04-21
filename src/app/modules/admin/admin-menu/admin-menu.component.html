@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <img style="width: 100px; height: 30px;" src="assets/images/CS-Logo-Update.png">&nbsp;
+  <span style="font-size: 30px;">Admin Dashboard</span>
+
+  <div class="spacer"></div>
+
+
+  <a mat-button [routerLink]="['/user-add']" >Add Users</a>
+  <a mat-button [routerLink]="['/questions-list']" >Manage Questions</a>
+  <a mat-button [routerLink]="['/exams-list']" >Manage Exams</a>
+  <a mat-button [routerLink]="['/results-list']" >Exam Results</a>
+  <a mat-button (click)="logOut()" style="color: red;">LogOut</a>
+</mat-toolbar>

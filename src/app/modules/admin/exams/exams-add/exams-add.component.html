@@ -1,0 +1,79 @@
+<app-admin-menu></app-admin-menu>
+
+<div class="container border p-3 rounded-3">
+  <form [formGroup]="addForm" (ngSubmit)="submitAddForm()">
+    <div class="row g-0">
+      <div class="col text-center p-2 mb-3 ">
+        <span class="fs-3">Schedule Exam</span>
+      </div>
+      <hr />
+
+      <div class="row mb-3">
+        <div class="col">
+          <div class="mb-4">Technology</div>
+          <div *ngFor="let item of technologies ; let i = index">
+            <div class="mb-2">
+              <mat-slide-toggle (change)="onCheckboxChange(item.id)"></mat-slide-toggle>
+              <label>{{ item.technologyName }}</label>
+            </div>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="examDate" class="form-label">Exam Date</label>
+          <input type="date" class="form-control" id="examDate" formControlName="examDate">
+          <div class="form-text text-danger"
+            *ngIf="examDate.errors?.['required'] && (examDate.touched || examDate.dirty)">
+            Exam Date is Required !
+          </div>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <div style="margin-bottom: 10px;">
+            <button class="btn btn-success" type="button" (click)="openDialog()">
+              Add Candidates <i class="fa fa-plus" aria-hidden="true"></i></button>
+          </div>
+        </div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+
+          <div class="container border p-3 rounded-3" *ngIf="usernames.length > 0">
+            <h2>Added Candidates:</h2>
+            <mat-grid-list class="mt-4" cols="5" rowHeight="40px" gutterSize="10">
+              <mat-grid-tile class="btn btn-secondary" *ngFor="let name of usernames">
+                {{name}}
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+
+
+          <!-- <button type="button" style="margin: 0.5%;" *ngFor="let name of usernames"
+            class="btn btn-secondary">{{name}}</button> -->
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-6 offset-3">
+          <div class="d-grid">
+            <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Schedule Exam</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

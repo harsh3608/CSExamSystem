@@ -1,0 +1,55 @@
+<div class="parent border">
+
+  <div class="title ">
+    <h1 mat-dialog-title><strong>Reschedule Candidate Exam </strong></h1>
+    <h2 mat-dialog-title><strong>for {{data.username}} </strong></h2>
+
+    <hr />
+
+  </div>
+
+  <div mat-dialog-content class="container">
+
+    <form [formGroup]="rescheduleForm">
+      <div class="row mb-3">
+        <div class="col">
+          <div class="mb-4">Technology</div>
+          <div *ngFor="let item of technologies ; let i = index">
+            <div class="mb-2">
+              <mat-slide-toggle (change)="onCheckboxChange(item.id)"></mat-slide-toggle>
+              <label>{{ item.technologyName }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="examDate" class="form-label">Exam Date</label>
+          <input type="date" class="form-control" id="examDate" formControlName="examDate">
+          <div class="form-text text-danger"
+            *ngIf="examDate.errors?.['required'] && (examDate.touched || examDate.dirty)">
+            Exam Date is Required !
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="footer">
+    <hr />
+    <div mat-dialog-actions class="red">
+      <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </div>
+    <div mat-dialog-actions class="blue">
+      <button class="btn btn-primary" type="submit" (click)="submitForm()" [disabled]="rescheduleForm.invalid">
+        Reschedule Exam
+      </button>
+    </div>
+  </div>
+
+</div>

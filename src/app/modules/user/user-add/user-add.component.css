@@ -1,0 +1,27 @@
+.container {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: auto;
+  background-color: white;
+
+
+}
+
+.spacer {
+  flex: 1 1 auto
+}
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+select.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+.mat-toolbar{
+  background-color: rgb(255, 255, 255);
+  color: black;
+}

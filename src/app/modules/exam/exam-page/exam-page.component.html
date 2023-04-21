@@ -1,0 +1,127 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <img style="width: 100px; height: 30px;" src="assets/images/CS-Logo-Update.png">&nbsp;
+  <span style="font-size: 28px;">All the Best !</span>
+
+  <div class="spacer"></div>
+
+  <div class="timer ">
+    <button class="btn btn-primary" (click)="startTest()" [disabled]="isStartDisabled">Start Test</button>
+    &nbsp;
+    <button class="btn btn-success">
+      <i class="fa fa-clock-o" style="scale: 1.5;"></i>&nbsp; {{minutes}} : {{seconds}} mins. left
+    </button>
+    &nbsp;
+    <button class="btn btn-danger" routerLink="/user-dashboard" [disabled]="!isStartDisabled">Submit Test</button>
+  </div>
+</mat-toolbar>
+
+
+<ng-container *ngIf="!isStartDisabled">
+  <div class="instructions border p-3 rounded-3">
+    <!-- <strong>Test not started yet...</strong>
+    <p>Please, start the test....</p> -->
+    <div style="text-align: center;">
+      <h1>General Instructions</h1>
+    </div>
+    <div class="p-4" style="width: 80%;">
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
+        Arrange for stable Internet connectivity.
+      </p>
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
+        Giving examination on Laptop or Desktop is highly recommended.
+      </p>
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
+        Close all browsers/tabs before starting the online examination.
+      </p>
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
+        Once the exam starts, do not switch to any other window/tab. On doing so,
+        your attempt may be considered as <br> &nbsp;&nbsp;&nbsp;&nbsp; malpractice and your exam may get
+        terminated.
+      </p>
+      <h2>Note:</h2>
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
+        It is recommended to use web browser such as Mozilla and Chrome
+        browsers etc. on a desktop/laptop/tab/smart phone.
+      </p>
+      <p><i class="fa fa-arrow-right" aria-hidden="true"></i>&nbsp;
+        Do not use the back button of keyboard or close button/icon to go back to
+        previous page or to close the screen.
+      </p>
+
+
+
+    </div>
+
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="isStartDisabled">
+
+  <div style="display:flex; flex-direction:row;">
+    <div class="card border p-3 rounded-3 ">
+      <div class="text-center p-2 mb-2 bg-light">
+        <span class="fs-3">Questions Map</span>
+      </div>
+      <mat-grid-list class="mt-4" cols="5" rowHeight="40px" gutterSize="5">
+
+        <mat-grid-tile
+          [ngClass]="isActive(i)? 'btn btn-success border p-3 rounded-3 col col-lg-4 col-sm-4':'btn btn-primary border p-3 rounded-3 col col-lg-4 col-sm-4'"
+          *ngFor="let item of questions;let i=index" (click)="navTab(i)">
+          <p>Q.{{ i+1 }}</p>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </div>
+
+    <div class="container border p-3 rounded-3">
+
+      <ng-container *ngFor="let item of questions; let i = index">
+        <div class="paginator mb-2 p-3" *ngIf="i == currentIndex">
+          <div class="text-center p-3 mb-2 bg-light" style="height: 60px;">
+
+            <span style="float:left; font-size: 20px;">Question No.: {{currentIndex + 1}}</span>
+
+            <span style="font-size: 20px;">{{getTechById(item.question.technologyId)}}</span>
+
+            <div style="float: right; scale: 0.9;">
+              <button class="btn btn-secondary" [disabled]="currentIndex==0" (click)="decreaseIndex()">
+                <i class="fa fa-step-backward" aria-hidden="true"></i> prev
+              </button>
+              &nbsp;
+              <button class="btn btn-secondary" [disabled]="isActive(currentIndex) || currentIndex==(length-1)"
+                (click)="increaseIndex()">
+                skip <i class="fa fa-fast-forward" aria-hidden="true"></i>
+              </button>
+              &nbsp;
+              <button class="btn btn-secondary" [disabled]="currentIndex==(length-1)" (click)="increaseIndex()">
+                next <i class="fa fa-step-forward" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="border p-3 mt-2 rounded-3" *ngIf="i == currentIndex">
+          <textarea disabled style="width: 100%; min-height: 270px;">
+            <pre><code>{{item.question.questionName}}</code></pre>
+          </textarea>
+
+          <p>Select one of the options below:</p>
+
+          <div *ngFor="let option of item.question.options">
+
+            <label>
+              <input type="radio"  value="{{ option.questionLabelOption }}"
+              (click)="optionChecked(item.id ,option.id ,option.questionLabelOption, item.candiateExamUserId)"
+              [checked]="option.questionLabelOption === getOptionValue()"  >
+              {{ option.questionOptionName }}
+            </label>
+          </div>
+        </div>
+
+      </ng-container>
+
+    </div>
+  </div>
+
+</ng-container>

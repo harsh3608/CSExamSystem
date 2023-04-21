@@ -1,0 +1,54 @@
+.parent {
+  height: 550px;
+  width: 400px;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  margin-top: 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 150px;
+  width: 100%;
+}
+
+.container {
+  position: absolute;
+  top: 150px;
+  left: 0;
+  height: 300px;
+  width: 100%;
+  overflow: auto;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100px;
+  width: 100%;
+}
+
+
+.blue {
+  float: right;
+  margin-right: 2%;
+}
+
+.red {
+  float: left;
+  margin-bottom: 2%;
+  margin-left: 2%;
+}
+
+
+
+input.ng-invalid.ng-touched{
+  border: 1px solid red;
+}
+
+select.ng-invalid.ng-touched{
+  border: 1px solid red;
+}

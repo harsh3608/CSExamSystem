@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <img style="width: 100px; height: 30px;" src="assets/images/CS-Logo-Update.png">&nbsp;
+  <span style="font-size: 28px;">Exam Portal</span>
+  <div class="spacer"></div>
+  <p class="mt-2">Hello, {{username}}</p>&nbsp;&nbsp;&nbsp;
+  <a mat-button (click)="logOut()" style="color: red;">LogOut</a>
+</mat-toolbar>
+
+<ng-container *ngIf="isLoading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+  <div class="container border p-3 rounded-3">
+    <div class="row g-0">
+      <div class="col text-center p-2 mb-3">
+        <span class="fs-3">Your Scheduled Exams </span>
+      </div>
+    </div>
+    <hr />
+
+    <!-- <mat-grid-list cols="5" rowHeight="100px" gutterSize="6">
+      <mat-grid-tile class="border p-3 rounded-3 col col-lg-4 col-sm-4"
+        *ngFor="let technology of technologies"
+        (click)="openModal(technology.id, technology.technologyName )">
+        <h2>{{ technology.technologyName }}</h2>
+      </mat-grid-tile>
+    </mat-grid-list> -->
+
+    <mat-grid-list cols="1" rowHeight="100px" gutterSize="6">
+      <mat-grid-tile class="border p-3 rounded-3 col col-lg-4 col-sm-4"
+        *ngIf="isExamScheduled">
+        <h2>You have a pending Scheduled Exam today, you can start it from here.
+          &nbsp;&nbsp;
+          <button  class="btn btn-primary " [routerLink]="['/exam/'+candidateExamId]">
+            Start Exam
+          </button>
+        </h2>
+
+      </mat-grid-tile>
+
+      <mat-grid-tile class="border p-3 rounded-3 col col-lg-4 col-sm-4"
+        *ngIf="!isExamScheduled">
+        <h2>You have no scheduled exams today.  </h2>
+      </mat-grid-tile>
+
+      <!-- <mat-grid-tile class="border p-3 rounded-3 col col-lg-4 col-sm-4"
+        *ngIf="!isExamScheduled"
+        (click)="openModal(candidateExamId, technology )">
+        <h2>You have no scheduled exams today.  </h2>
+      </mat-grid-tile> -->
+    </mat-grid-list>
+
+
+  </div>
+</ng-container>

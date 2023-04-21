@@ -1,0 +1,37 @@
+<div class="parent">
+
+  <div class="title ">
+    <h1 mat-dialog-title><strong>Add Candidates</strong></h1>
+    <hr />
+  </div>
+
+  <div mat-dialog-content class="container">
+    <p-table [value]="users">
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- <th>Sr.No.</th> -->
+          <th>Name</th>
+          <th>Add</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+
+          <td>{{ user.fullName }}</td>
+          <td> <mat-slide-toggle (change)="onCheckboxChange(user.id)"></mat-slide-toggle> </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="footer">
+    <hr />
+    <div mat-dialog-actions class="red">
+      <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </div>
+    <div mat-dialog-actions class="blue">
+      <button class="btn btn-primary" (click)="onAdd()">Add Candidates</button>
+    </div>
+  </div>
+
+</div>

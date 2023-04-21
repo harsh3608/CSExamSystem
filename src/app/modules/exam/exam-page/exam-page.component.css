@@ -1,0 +1,62 @@
+.spacer {
+  flex: 1 1 auto
+}
+
+.container {
+  width: 72%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: auto;
+  margin-right: 2%;
+  background-color: white;
+}
+
+.instructions{
+  width: 90%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: auto;
+  background-color: white;
+}
+
+.card{
+  width: 22%;
+  margin-top: 2%;
+  /* overflow-y: scroll; */
+  margin-left: 2%;
+  margin-right: 1%;
+}
+
+.navigate {
+  float: right;
+  margin-right: 10%;
+}
+
+.paginator{
+  display: inline;
+}
+
+.strong{
+  margin-top: 2%;
+}
+
+.mat-toolbar{
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+h1{
+  font-size: 25px;
+}
+
+p{
+  font-size: large;
+}
+
+label{
+  font-size: medium;
+}
