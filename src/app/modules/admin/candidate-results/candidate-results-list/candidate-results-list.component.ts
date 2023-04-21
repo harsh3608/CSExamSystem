@@ -9,25 +9,27 @@ import { CandidateResult } from '../../shared/models/candidate-result.models';
   templateUrl: './candidate-results-list.component.html',
   styleUrls: ['./candidate-results-list.component.css']
 })
-export class CandidateResultsListComponent implements OnInit{
-  loading: boolean = true;
+export class CandidateResultsListComponent implements OnInit {
+  loading: boolean = false;
   @ViewChild('dt') table!: Table;
-  results: CandidateResult[] = []
+  results: CandidateResult[] = [];
+  isLoading: boolean = true;
 
   constructor(
     private title: Title,
     private resultService: ResultService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.title.setTitle('Results');
+    this.resultService.getCandidateResultList().subscribe({
+      next: (res) => {
+        this.results = res.response;
+      }
+    });
+    //spinner timer
     setTimeout(() => {
-      this.resultService.getCandidateResultList().subscribe({
-        next: (res) => {
-          this.results = res.response;
-        }
-      });
-      this.loading = false;
+      this.isLoading = false;
     }, 1000);
   }
 

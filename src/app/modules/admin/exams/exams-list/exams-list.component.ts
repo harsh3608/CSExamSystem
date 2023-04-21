@@ -13,9 +13,10 @@ import { RescheduleCandidateExamComponent } from '../reschedule-candidate-exam/r
   styleUrls: ['./exams-list.component.css']
 })
 export class ExamsListComponent implements OnInit {
-  loading: boolean = true;
+  loading: boolean = false;
   @ViewChild('dt') table!: Table;
   exams: ScheduleExams[] = [];
+  isLoading: boolean = true;
 
   constructor(
     private title: Title,
@@ -25,13 +26,14 @@ export class ExamsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Manage Exams');
+    this.examService.getScheduleList().subscribe({
+      next: (res) => {
+        this.exams = res.response;
+      }
+    });
+    //Timer for spinner
     setTimeout(() => {
-      this.examService.getScheduleList().subscribe({
-        next: (res) => {
-          this.exams = res.response;
-        }
-      });
-      this.loading = false;
+      this.isLoading = false;
     }, 1000);
 
   }
@@ -51,7 +53,7 @@ export class ExamsListComponent implements OnInit {
   openRescheduleDialog(id: number) {
     const dialogRef = this.dialog.open(RescheduleCandidateExamComponent,
       {
-        data: {candidateExamId: id}
+        data: { candidateExamId: id }
       });
     dialogRef.afterClosed().subscribe(result => {
 

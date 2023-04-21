@@ -1,4 +1,11 @@
 <app-admin-menu></app-admin-menu>
+
+<ng-container *ngIf="isLoading">
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-container>
+
 <div class="card pl-5">
   <p-table #dt [value]="results" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"

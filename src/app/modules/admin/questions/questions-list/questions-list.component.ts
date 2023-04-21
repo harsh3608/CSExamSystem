@@ -14,7 +14,7 @@ import { ExperienceLevels } from 'src/app/modules/shared-module/common-enums';
 })
 export class QuestionsListComponent implements OnInit {
   questions: Question[] = [];
-  loading: boolean = true;
+  loading: boolean = false;
   @ViewChild('dt') table!: Table;
   technologies: Technology[] = [];
   tech: string = '';
@@ -23,6 +23,7 @@ export class QuestionsListComponent implements OnInit {
   first: number = 0;
   rows: number = 10;
   totalQuestions: number = 0;
+  isLoading: boolean = true;
 
   constructor(
     private questionsService: QuestionsCrudService,
@@ -32,23 +33,23 @@ export class QuestionsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Manage Questions');
-
-    setTimeout(() => {
-      this.questionsService.getAllQuestionsAsync().subscribe({
-        next: (res) => {
-          res.response.forEach(element => {
-            this.questions.push({
-              ...element,
-              isActiveVM: element.isActive ? "Yes" : "No",
-              experienceLevelVM: this.getExperienceLevels(element.experienceLevelId),
-              technologyVM: this.getTechById(element.technologyId)
-            });
+    this.questionsService.getAllQuestionsAsync().subscribe({
+      next: (res) => {
+        res.response.forEach(element => {
+          this.questions.push({
+            ...element,
+            isActiveVM: element.isActive ? "Yes" : "No",
+            experienceLevelVM: this.getExperienceLevels(element.experienceLevelId),
+            technologyVM: this.getTechById(element.technologyId)
           });
-          this.totalQuestions = res.response.length;
-        }
-      });
-      this.loading = false;
-    }, 1000)
+        });
+        this.totalQuestions = res.response.length;
+      }
+    });
+    //Timer for spinner
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
 
     this.technologyService.getAllTechnologies().subscribe({
       next: (res) => {

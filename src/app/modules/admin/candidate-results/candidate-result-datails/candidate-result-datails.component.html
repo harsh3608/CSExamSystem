@@ -1,2 +1,59 @@
 <app-admin-menu></app-admin-menu>
-<p>candidate-result-datails works!</p>
+
+<div class="container border p-3 rounded-3">
+  <div class="row g-0">
+    <div class="col text-center p-2 mb-3 ">
+      <span class="fs-2">Candidate Result</span>
+    </div>
+    <div class="mt-2 mb-3">
+      <span class="badge btn rounded-pill bg-primary" (click)="showAllQuestions()">Total Questions: {{totalQuestions.length}}</span>
+      <span class="badge btn rounded-pill bg-success" (click)="showCorrectQuestions()">Correctly Answered: {{correct.length}}</span>
+      <span class="badge btn rounded-pill bg-danger" (click)="showWrongQuestions()">Wrongly Answered: {{wrong.length}}</span>
+    </div>
+  </div>
+  <hr />
+
+  <!-- <mat-grid-list class="mt-4" cols="1" rowHeight="400px" gutterSize="15">
+
+    <mat-grid-tile [ngClass]="" class="border p-3 rounded-3 col col-lg-4 col-sm-4" *ngFor="let item of resultResponse.response;let i=index" >
+      <p>Q.{{ i+1 }}</p>
+      <textarea disabled style="width: 100%; min-height: 270px;">
+        <pre><code>{{item.question}}</code></pre>
+      </textarea>
+    </mat-grid-tile>
+
+  </mat-grid-list> -->
+
+  <ng-container *ngFor="let item of totalQuestions; let i = index">
+    <div class="border p-3 mt-4 rounded-3">
+      <div class="text-center p-3 mb-2 bg-light" style="height: 60px;">
+        <span style="float:left; font-size: 20px;">
+          <i style="color: rgb(14, 104, 14); scale: 1.4;" *ngIf="item.isCorrect"
+          class="fa fa-check-circle" aria-hidden="true"></i>
+
+          <i style="color: rgb(231, 6, 6); scale: 1.4;" *ngIf="!item.isCorrect"
+          class="fa fa-times-circle" aria-hidden="true"></i>
+          <!-- Question No.: {{i + 1}} -->
+        </span>
+
+        <span style="font-size: 20px;">{{item.technology}}</span>
+      </div>
+      <textarea disabled style="width: 100%; min-height: 200px;">
+        <pre><code>{{item.question}}</code></pre>
+      </textarea>
+
+      <p>Select one of the options below:</p>
+
+      <!-- <div *ngFor="let option of item.question.options">
+
+        <label>
+          <input type="radio"  value="{{ option.questionLabelOption }}"
+          (click)="optionChecked(item.id ,option.id ,option.questionLabelOption, item.candiateExamUserId)"
+          [checked]="option.questionLabelOption === getOptionValue()"  >
+          {{ option.questionOptionName }}
+        </label>
+      </div> -->
+    </div>
+  </ng-container>
+
+</div>

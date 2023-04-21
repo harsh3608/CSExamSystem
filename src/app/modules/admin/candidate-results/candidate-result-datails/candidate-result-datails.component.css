@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  margin-bottom: auto;
+  background-color: white;
+}
+
+.badge {
+  scale: 1.7;
+  margin-left: 5%;
+  margin-right: 5%;
+}

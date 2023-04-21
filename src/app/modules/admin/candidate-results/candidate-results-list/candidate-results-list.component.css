@@ -24,5 +24,9 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
 
+.spinner {
+  padding: 20%;
+  padding-left: 44%;
 }
