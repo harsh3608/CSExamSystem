@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared-module/common-services/auth-service/auth.service';
 import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-menu',
@@ -13,15 +13,22 @@ export class AdminMenuComponent implements OnInit{
   constructor(
     private authService: AuthService,
     private router: Router,
-    private title: Title
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
-    this.title.setTitle('Admin');
+    //this.title.setTitle('Admin');
   }
 
   logOut() {
-    this.authService.removeToken();
-    this.router.navigate(['']);
+    var val = confirm("Are you sure to Log Out ?");
+    if(val) {
+      this.authService.removeToken();
+      this.router.navigate(['']);
+      this.toastr.warning('Pease, Login to continue !', 'Logged Out', {
+        timeOut: 2000,
+      });
+    }
+
   }
 }

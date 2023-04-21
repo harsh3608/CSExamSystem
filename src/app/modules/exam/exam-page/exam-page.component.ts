@@ -61,7 +61,7 @@ export class ExamPageComponent implements OnInit, OnDestroy {
           res.response.forEach(element => {
             this.questions.push(element);
           });
-
+          this.length = res.response.length;
         }
       }
     );

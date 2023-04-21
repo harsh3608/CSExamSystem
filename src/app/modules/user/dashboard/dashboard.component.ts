@@ -8,6 +8,7 @@ import { AuthService } from '../../shared-module/common-services/auth-service/au
 import { Router } from '@angular/router';
 import { ExamService } from '../../exam/shared/services/exam.service';
 import { CandidateExam } from '../../exam/shared/models/exam.models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,56 +23,43 @@ export class DashboardComponent implements OnInit {
 
   isLoading: boolean = false;
   username!: string;
-  isExamScheduled:boolean = false;
+  isExamScheduled: boolean = false;
   candidateExamId: number = 0;
   technology: string = 'QWERTY';
 
   constructor(
     private title: Title,
-    private technologyService: TechnologyService,
     public dialog: MatDialog,
     private authService: AuthService,
     private router: Router,
-    private examService: ExamService
+    private examService: ExamService,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit() {
     this.isLoading = true;
     this.title.setTitle('User Dashboard');
-    //this.getTechnologyStack();
     this.getScheduledExams();
 
     this.username = localStorage.getItem("name") || '';
   }
 
-  // getTechnologyStack() {
-  //   setTimeout(() => {
-  //     this.technologyService.getAllTechnologies().subscribe({
-  //       next: (res) => {
-  //         this.technologies = res.response;
-  //       }
-  //     });
-  //     this.isLoading=false;
-  //   }, 1000);
-
-  // }
-
   getScheduledExams() {
     const id = this.authService.getUserId();
     setTimeout(() => {
       this.examService.getScheduledExams(id).subscribe(
-        (res)=>{
-          if(res.isSuccess && res.statusCode==200){
+        (res) => {
+          if (res.isSuccess && res.statusCode == 200) {
             this.exams = res.response;
             this.isExamScheduled = true;
             this.candidateExamId = res.response[0].candidateExamId
 
-          } else if(res.isSuccess && res.statusCode==400 ){
+          } else if (res.isSuccess && res.statusCode == 400) {
             this.isExamScheduled = false;
           }
         }
       );
-      this.isLoading=false;
+      this.isLoading = false;
     }, 1000);
   }
 
@@ -90,8 +78,14 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut() {
-    this.authService.removeToken();
-    this.router.navigate(['']);
+    var val = confirm("Are you sure to Log Out ?");
+    if (val) {
+      this.authService.removeToken();
+      this.router.navigate(['']);
+      this.toastr.warning('Pease, Login to continue !', 'Logged Out', {
+        timeOut: 2000,
+      });
+    }
   }
 
 

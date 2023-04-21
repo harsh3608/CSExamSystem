@@ -106,7 +106,7 @@
         <td>{{question.lastModifiedOn | date: 'MM-dd-yyyy hh:mm:ss a'}}</td>
 
         <td>
-          <button type="submit" class="btn btn-warning mt-2 " [routerLink]="['/questions-update/',question.id]">
+          <button pTooltip="Update Question" tooltipPosition="left" type="submit" class="btn btn-warning mt-2 " [routerLink]="['/questions-update/',question.id]">
             <i class="fa fa-pencil-square-o " style="scale: 2.0;"></i>
           </button>
         </td>

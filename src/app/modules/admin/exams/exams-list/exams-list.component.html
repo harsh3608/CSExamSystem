@@ -73,17 +73,17 @@
         <td>{{exam.examDate | date: 'dd-MMM-yyyy'}}</td>
         <td>
           {{exam.presentCandidates.length}}&nbsp;
-          <button class="btn btn-primary" (click)="openDialog(exam.id,exam.presentCandidates)"
-            [disabled]="exam.presentCandidates.length == 0">View</button>
+          <button pTooltip="View Present Candidates" tooltipPosition="bottom" class="btn btn-primary" (click)="openDialog(exam.id,exam.presentCandidates)"
+            [disabled]="exam.presentCandidates.length == 0"><i class="fa fa-solid fa-list"></i></button>
         </td>
         <td>
           {{exam.absentCandidates.length}}&nbsp;
-          <button class="btn btn-danger" (click)="openDialog(exam.id,exam.absentCandidates)"
-            [disabled]="exam.absentCandidates.length == 0">View</button>
+          <button pTooltip="View Absent Candidates" tooltipPosition="bottom" class="btn btn-danger" (click)="openDialog(exam.id,exam.absentCandidates)"
+            [disabled]="exam.absentCandidates.length == 0"><i class="fa fa-solid fa-list"></i></button>
         </td>
         <td>{{exam.status}}</td>
         <td>
-          <button class="btn btn-warning" (click)="openRescheduleDialog(exam.id)">
+          <button pTooltip="Reschedule Exam" tooltipPosition="bottom" class="btn btn-warning" (click)="openRescheduleDialog(exam.id)">
             <i class="fa fa-pencil-square-o " style="scale: 2.0;"></i>
           </button>
         </td>

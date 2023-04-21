@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent {
+
+  constructor(private title: Title){
+    this.title.setTitle('Admin Dashboard');
+  }
 
 }

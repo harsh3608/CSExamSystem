@@ -19,7 +19,9 @@
         <tr>
           <td>{{item.fullname}}</td>
           <td *ngIf="item.statusId==1">
-            <button  class="btn btn-warning" (click)="openDialog(data.candidateExamId, item.id, item.fullname)"> Reschedule Exam</button>
+            <button pTooltip="Reschedule Candidate Exam" tooltipPosition="bottom" class="btn btn-warning" (click)="openDialog(data.candidateExamId, item.id, item.fullname)">
+              <i class="fa fa-pencil-square-o " style="scale: 2.0;"></i>
+            </button>
           </td>
           <td *ngIf="item.statusId==4">
             <!-- <button disabled  class="btn btn-success" > Candidate Exam Over</button> -->

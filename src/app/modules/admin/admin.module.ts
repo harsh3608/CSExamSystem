@@ -34,7 +34,7 @@ import { ExamsRescheduleComponent } from './exams/exams-reschedule/exams-resched
 import { CandidateResultsListComponent } from './candidate-results/candidate-results-list/candidate-results-list.component';
 import { CandidateResultDatailsComponent } from './candidate-results/candidate-result-datails/candidate-result-datails.component';
 import { RescheduleCandidateExamComponent } from './exams/reschedule-candidate-exam/reschedule-candidate-exam.component';
-
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -74,7 +74,7 @@ import { RescheduleCandidateExamComponent } from './exams/reschedule-candidate-e
     DropdownModule,
     MatGridListModule,
     PaginatorModule,
-
+    TooltipModule,
     SharedModuleModule
   ]
 })

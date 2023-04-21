@@ -6,11 +6,11 @@
 
   <div class="timer ">
     <button class="btn btn-primary" (click)="startTest()" [disabled]="isStartDisabled">Start Test</button>
-    &nbsp;
-    <button class="btn btn-success">
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="badge rounded-pill bg-success"style="scale: 1.3;">
       <i class="fa fa-clock-o" style="scale: 1.5;"></i>&nbsp; {{minutes}} : {{seconds}} mins. left
-    </button>
-    &nbsp;
+    </span>
+    &nbsp;&nbsp;&nbsp;&nbsp;
     <button class="btn btn-danger" routerLink="/user-dashboard" [disabled]="!isStartDisabled">Submit Test</button>
   </div>
 </mat-toolbar>
@@ -47,9 +47,6 @@
         Do not use the back button of keyboard or close button/icon to go back to
         previous page or to close the screen.
       </p>
-
-
-
     </div>
 
   </div>

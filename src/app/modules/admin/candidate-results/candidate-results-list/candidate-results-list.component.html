@@ -68,7 +68,7 @@
         <td>{{result.obtainedScore}}</td>
         <td>{{result.totalScore}}</td>
         <td>
-          <button [routerLink]="['/result-details/',result.candidateExamId]" class="btn btn-warning"><i class="fa fa-sharp fa-solid fa-eye"></i>
+          <button pTooltip="View Candidate Result" tooltipPosition="left" [routerLink]="['/result-details/',result.candidateExamId]" class="btn btn-warning"><i class="fa fa-sharp fa-solid fa-eye"></i>
           </button>
         </td>
 
