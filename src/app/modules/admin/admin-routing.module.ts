@@ -64,7 +64,7 @@ const routes: Routes = [{
   canActivate: [AuthGuard]
 },
 {
-  path: 'result-details/:id/:uid',
+  path: 'result-details/:id/:uid/:name',
   component: CandidateResultDatailsComponent,
   canActivate: [AuthGuard]
 },

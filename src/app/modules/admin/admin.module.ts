@@ -35,6 +35,7 @@ import { CandidateResultsListComponent } from './candidate-results/candidate-res
 import { CandidateResultDatailsComponent } from './candidate-results/candidate-result-datails/candidate-result-datails.component';
 import { RescheduleCandidateExamComponent } from './exams/reschedule-candidate-exam/reschedule-candidate-exam.component';
 import { TooltipModule } from 'primeng/tooltip';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { TooltipModule } from 'primeng/tooltip';
     MatGridListModule,
     PaginatorModule,
     TooltipModule,
-    SharedModuleModule
+    SharedModuleModule,
+    CalendarModule
   ]
 })
 export class AdminModule { }

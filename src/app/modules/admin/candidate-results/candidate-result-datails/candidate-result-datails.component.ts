@@ -15,6 +15,8 @@ export class CandidateResultDatailsComponent implements OnInit {
   totalQuestions: ResultDetails[] = [];
   isLoading: boolean = true;
   resultResponse: ResultDetails[] = [];
+  isQuesLoading: boolean = false;
+  candidateName: string = '';
 
   constructor(
     private title: Title,
@@ -27,44 +29,52 @@ export class CandidateResultDatailsComponent implements OnInit {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
-    this.route.paramMap.subscribe(
-      (params) => {
-        const candidateExamId: number = this.route.snapshot.params['id'];
-        const userId: string = this.route.snapshot.params['uid'];
-        if (candidateExamId && userId) {
-          //debugger
-          this.resultService.getCandidateResultDetails(candidateExamId, userId).subscribe({
-            next: (res) => {
-              if (res.isSuccess) {
-                this.resultResponse = res.response;
-                this.totalQuestions = res.response;
-                res.response.forEach(element => {
-                  if (element.isCorrect) {
-                    this.correct.push(element);
-                  }
-                  else if (!element.isCorrect) {
-                    this.wrong.push(element);
-                  }
-                })
+    this.candidateName = this.route.snapshot.paramMap.get('name') || '';
+    const candidateExamId: number = this.route.snapshot.params['id'];
+    const userId: string = this.route.snapshot.params['uid'];
+    if (candidateExamId && userId) {
+      //debugger
+      this.resultService.getCandidateResultDetails(candidateExamId, userId).subscribe({
+        next: (res) => {
+          if (res.isSuccess) {
+            this.resultResponse = res.response;
+            this.totalQuestions = res.response;
+            res.response.forEach(element => {
+              if (element.isCorrect) {
+                this.correct.push(element);
               }
-            }
-          })
+              else if (!element.isCorrect) {
+                this.wrong.push(element);
+              }
+            })
+          }
         }
-      }
-    );
-
+      })
+    };
   }
 
   showAllQuestions() {
-    this.totalQuestions = this.resultResponse;
+    this.isQuesLoading = true;
+    setTimeout(() => {
+      this.totalQuestions = this.resultResponse;
+      this.isQuesLoading = false;
+    }, 1000);
   }
 
   showCorrectQuestions() {
-    this.totalQuestions = this.correct;
+    this.isQuesLoading = true;
+    setTimeout(() => {
+      this.totalQuestions = this.correct;
+      this.isQuesLoading = false;
+    }, 1000);
   }
 
   showWrongQuestions() {
-    this.totalQuestions = this.wrong;
+    this.isQuesLoading = true;
+    setTimeout(() => {
+      this.totalQuestions = this.wrong;
+      this.isQuesLoading = false;
+    }, 1000);
   }
 
 }

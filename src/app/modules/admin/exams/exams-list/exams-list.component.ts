@@ -26,16 +26,19 @@ export class ExamsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Manage Exams');
+    this.getExamsList();
+    //Timer for spinner
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
+  }
+
+  getExamsList() {
     this.examService.getScheduleList().subscribe({
       next: (res) => {
         this.exams = res.response;
       }
     });
-    //Timer for spinner
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
-
   }
 
   openDialog(id: number, candidates: PresentCandidate) {
@@ -46,7 +49,7 @@ export class ExamsListComponent implements OnInit {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-
+      this.getExamsList();
     });
   }
 
@@ -56,7 +59,7 @@ export class ExamsListComponent implements OnInit {
         data: { candidateExamId: id }
       });
     dialogRef.afterClosed().subscribe(result => {
-
+      this.getExamsList();
     });
   }
 

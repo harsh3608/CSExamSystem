@@ -5,19 +5,19 @@
   margin-top: 2%;
 } */
 
-td{
+td {
   font-size: medium;
 }
 
-th{
+th {
   font-size: small;
 }
 
-.table-header{
+.table-header {
   font-size: small;
 }
 
-filter{
+filter {
   height: 10px;
 }
 
@@ -36,4 +36,11 @@ p {
 .spinner {
   padding: 20%;
   padding-left: 44%;
+}
+
+.action {
+  padding-left: 25%;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
 }

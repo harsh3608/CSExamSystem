@@ -13,11 +13,11 @@
     [globalFilterFields]="['questionName', 'isActiveVM', 'experienceLevelVM', 'technologyVM','lastModifiedOn']">
 
     <ng-template pTemplate="caption">
-      <div class="row table-header">
+      <div class="row table-header" style="display: flex; justify-content: space-between;">
         <div class="col" style="margin-top: 0.5%;">
           <span>Manage Questions</span>
         </div>
-        <div class="col" style=" padding-left: 25%; ">
+        <div class="col action">
           <p-button icon="pi pi-plus" routerLink="/questions-add" label="Add"></p-button>
 
           <span style="margin-left: 3%;" class="p-input-icon-left">
@@ -89,7 +89,7 @@
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-question >
+    <ng-template pTemplate="body" let-question>
       <tr>
 
         <!-- <td>{{question.id}}</td> -->
@@ -103,10 +103,11 @@
         <!-- <td>{{question.marks}}</td> -->
         <!-- <td>{{isActiveStatus(question.isActive)}}</td> -->
         <td>{{question.isActive? "Yes": "No"}}</td>
-        <td>{{question.lastModifiedOn | date: 'MM-dd-yyyy hh:mm:ss a'}}</td>
+        <td>{{question.lastModifiedOn | date: 'dd-MMM-yyyy'}}</td>
 
         <td>
-          <button pTooltip="Update Question" tooltipPosition="left" type="submit" class="btn btn-warning mt-2 " [routerLink]="['/questions-update/',question.id]">
+          <button pTooltip="Update Question" tooltipPosition="left" type="submit" class="btn btn-warning mt-2 "
+            [routerLink]="['/questions-update/',question.id]">
             <i class="fa fa-pencil-square-o " style="scale: 2.0;"></i>
           </button>
         </td>

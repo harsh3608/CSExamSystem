@@ -58,7 +58,7 @@ export class UserLoginComponent implements OnInit {
               //User Role
               if (res.response.userRole == 'Users') {
                 this.toastr.success('User Logged In Successfully!', 'Success!',{
-                  timeOut: 2000,
+                  timeOut: 1500,
                 });
                 this.router.navigate(['user-dashboard']);
                 this.authService.setToken(res.response.token,res.response.userId,res.response.userRole);
@@ -68,7 +68,7 @@ export class UserLoginComponent implements OnInit {
               //Admin Role
               else if (res.response.userRole == 'Admin') {
                 this.toastr.success('Admin Logged In Successfully!', 'Success!',{
-                  timeOut: 2000,
+                  timeOut: 1500,
                 });
                 this.router.navigate(['admin-dashboard']);
                 this.authService.setToken(res.response.token,res.response.userId,res.response.userRole);
@@ -79,7 +79,7 @@ export class UserLoginComponent implements OnInit {
               //Login failed
               this.isLoading = false;
               this.toastr.error('User Not Found!', 'Failure', {
-                timeOut: 2000,
+                timeOut: 1500,
               });
               this.loginForm.reset();
             }

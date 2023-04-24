@@ -9,7 +9,7 @@
 <div class="container border p-3 rounded-3" *ngIf="!isLoading">
   <div class="row g-0">
     <div class="col text-center p-2 mb-3 ">
-      <span class="fs-2">Candidate Result</span>
+      <span class="fs-2">Candidate Result: {{candidateName}}</span>
     </div>
     <div class="mt-2 mb-3">
       <span class="badge btn rounded-pill bg-primary" (click)="showAllQuestions()">Total Questions:
@@ -22,36 +22,52 @@
   </div>
   <hr />
 
-  <ng-container *ngFor="let item of totalQuestions; let i = index">
-    <div class="border p-3 mt-4 rounded-3">
-      <div class="text-center p-3 mb-2 bg-light" style="height: 60px;">
-        <span style="float:left; font-size: 20px;">
-          <i style="color: rgb(14, 104, 14); scale: 1.4;" *ngIf="item.isCorrect" class="fa fa-check-circle"
-            aria-hidden="true"></i>
+  <ng-container *ngIf="isQuesLoading">
+    <div class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-container>
 
-          <i style="color: rgb(231, 6, 6); scale: 1.4;" *ngIf="!item.isCorrect" class="fa fa-times-circle"
-            aria-hidden="true"></i>
-          <!-- Question No.: {{i + 1}} -->
-        </span>
+  <div *ngIf="!isQuesLoading">
+    <ng-container *ngFor="let item of totalQuestions; let i = index">
+      <div class="border p-3 mt-4 rounded-3">
+        <div class="text-center p-3 mb-2 bg-light" style="height: 60px;">
+          <span style="float:left; font-size: 20px;">
+            <i style="color: rgb(14, 104, 14); scale: 1.4;" *ngIf="item.isCorrect" class="fa fa-check-circle"
+              aria-hidden="true"></i>
 
-        <span style="font-size: 20px;">{{item.technology}}</span>
+            <i style="color: rgb(231, 6, 6); scale: 1.4;" *ngIf="!item.isCorrect" class="fa fa-times-circle"
+              aria-hidden="true"></i>
+            <!-- Question No.: {{i + 1}} -->
+          </span>
 
-        <span style="float: right; scale: 1.4;" class="badge bg-warning">Marks: {{item.marks}}</span>
-      </div>
-      <textarea disabled style="width: 100%; min-height: 200px;">
+          <span style="font-size: 20px;">{{item.technology}}</span>
+
+          <span style="float: right; scale: 1.4;" class="badge bg-warning">Marks: {{item.marks}}</span>
+        </div>
+        <textarea disabled style="width: 100%; min-height: 200px;">
         <pre><code>{{item.question}}</code></pre>
       </textarea>
 
-      <div>
-        <span style="scale: 1.4; margin-left: 2%; margin-right: 3%" class="badge  bg-primary mt-3 mb-2">Correct Answer:
-          {{item.correctAnswer}}</span>&nbsp;&nbsp;
-        <span *ngIf="item.userSelectedAnswer" style="scale: 1.4; margin-left: 3%; margin-right: 5%" class="badge  bg-success mt-2 mb-2">User Selected Answer:
-          {{item.userSelectedAnswer}}</span>
-          <span *ngIf="!item.userSelectedAnswer" style="scale: 1.4; margin-left: 3%; margin-right: 5%" class="badge  bg-danger mt-2 mb-2">No Answer Selected
-            </span>
-      </div>
+        <div>
+          <span style="scale: 1.4; margin-left: 2%; margin-right: 3%" class="badge  bg-primary mt-3 mb-2">Correct
+            Answer:
+            {{item.correctAnswer}}</span>&nbsp;&nbsp;
+          <span *ngIf="item.isCorrect" style="scale: 1.4; margin-left: 3%; margin-right: 5%"
+            class="badge  bg-success mt-2 mb-2">User Selected Answer: {{item.userSelectedAnswer}}
+          </span>
+          <span *ngIf="!item.isCorrect  && item.userSelectedAnswer" style="scale: 1.4; margin-left: 3%; margin-right: 5%"
+            class="badge  bg-danger mt-2 mb-2">
+            User Selected Answer: {{item.userSelectedAnswer}}
+          </span>
+          <span *ngIf="!item.isCorrect && !item.userSelectedAnswer" style="scale: 1.4; margin-left: 3%; margin-right: 5%"
+            class="badge  bg-danger mt-2 mb-2">
+            No Answer Selected
+          </span>
+        </div>
 
-    </div>
-  </ng-container>
+      </div>
+    </ng-container>
+  </div>
 
 </div>

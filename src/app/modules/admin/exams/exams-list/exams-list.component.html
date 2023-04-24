@@ -58,9 +58,18 @@
 
       </tr>
       <tr class="filter">
-        <th>
-          <p-columnFilter type="text"  field="examDate"></p-columnFilter>
+        <th style="width: 300px;">
+          <p-columnFilter  type="date"  field="examDate"></p-columnFilter>
         </th>
+        <!-- <th>
+          <p-columnFilter type="text" field="examDate" >
+               <ng-template pTemplate="filter" let-filter="filterCallback">
+                  <p-calendar  dateFormat="yy-mm-dd"
+                  #calendar  (onSelect)="filter(calendar.value)"
+                  ></p-calendar>
+               </ng-template>
+          </p-columnFilter>
+       </th> -->
         <th></th>
         <th></th>
         <th></th>
