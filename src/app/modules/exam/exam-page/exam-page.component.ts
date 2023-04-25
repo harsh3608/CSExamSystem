@@ -160,15 +160,14 @@ export class ExamPageComponent implements OnInit, OnDestroy {
                 localStorage.removeItem("status-array");
                 this.router.navigate(['user-dashboard']);
                 this.questionsService.removeStoredResponse();
+              } else if (res.isSuccess && res.statusCode != 200) {
+                this.toastr.error('Exam Not Submitted!', 'Failure!', {
+                  timeOut: 2000,
+                });
+                localStorage.removeItem("status-array");
+                this.router.navigate(['user-dashboard']);
+                this.questionsService.removeStoredResponse();
               }
-              //else if (res.isSuccess && res.statusCode != 200) {
-              //   this.toastr.error('Exam Not Submitted!', 'Failure!', {
-              //     timeOut: 2000,
-              //   });
-              //   localStorage.removeItem("status-array");
-              //   this.router.navigate(['user-dashboard']);
-              //   this.questionsService.removeStoredResponse();
-              // }
             }
           );
         }
