@@ -9,8 +9,8 @@
   <p-table #dt [value]="questions" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,50]" [rows]="10"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [loading]="loading"
-    [paginator]="true" [filterDelay]="0"
-    [globalFilterFields]="['questionName', 'isActiveVM', 'experienceLevelVM', 'technologyVM','lastModifiedOn']">
+    [paginator]="true" [filterDelay]="0" [reorderableColumns]="true" sortField="createdOn" [sortOrder]="-1"
+    [globalFilterFields]="['questionName', 'isActiveVM', 'experienceLevelVM', 'technologyVM','createdOn']">
 
     <ng-template pTemplate="caption">
       <div class="row table-header" style="display: flex; justify-content: space-between;">
@@ -58,7 +58,7 @@
         </th> -->
         <th pSortableColumn="isActiveVM">Is Active?<p-sortIcon field="isActiveVM"></p-sortIcon>
         </th>
-        <th pSortableColumn="lastModifiedOn">Last Modified<p-sortIcon field="lastModifiedOn"></p-sortIcon>
+        <th pSortableColumn="createdOn">Created On<p-sortIcon field="createdOn"></p-sortIcon>
         </th>
         <th>Action</th>
       </tr>
@@ -83,7 +83,7 @@
           <p-columnFilter type="text" field="isActiveVM"></p-columnFilter>
         </th>
         <th>
-          <p-columnFilter type="text" field="lastModifiedOn"></p-columnFilter>
+          <p-columnFilter type="text" field="createdOn"></p-columnFilter>
         </th>
         <th>
         </th>
@@ -103,7 +103,7 @@
         <!-- <td>{{question.marks}}</td> -->
         <!-- <td>{{isActiveStatus(question.isActive)}}</td> -->
         <td>{{question.isActive? "Yes": "No"}}</td>
-        <td>{{question.lastModifiedOn | date: 'dd-MMM-yyyy'}}</td>
+        <td>{{question.createdOn | date: 'dd-MMM-yyyy'}}</td>
 
         <td>
           <button pTooltip="Update Question" tooltipPosition="left" type="submit" class="btn btn-warning mt-2 "
