@@ -17,18 +17,18 @@
         <div class="col" style="margin-top: 0.5%;">
           <span>Manage Exams</span>
         </div>
-        <div class="col" style=" padding-left: 25%; ">
+        <div class="col action" >
           <div style="float: right;">
-            <p-button icon="pi pi-plus" routerLink="/exams-add" label="Schedule Exam"></p-button>
+            <p-button icon="pi pi-plus" pTooltip="Schedule New Exam" tooltipPosition="bottom" routerLink="/exams-add" label="Schedule"></p-button>
           </div>
 
-          <!-- <span style="margin-left: 3%;" class="p-input-icon-left">
+          <span style="margin-left: 3%;" class="p-input-icon-left ms-4">
             <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+            <input pInputText type="text" id="search" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
               placeholder="Global Search" />
           </span>
-          <button style="margin-left: 3%;" pButton label="Clear" class="p-button-outlined " icon="pi pi-filter-slash"
-            (click)="clear(dt)"></button> -->
+          <button style="margin-left: 3%;" pButton label="Clear" class="p-button-outlined ms-4" icon="pi pi-filter-slash"
+            (click)="clear(dt)"></button>
         </div>
       </div>
     </ng-template>
@@ -59,7 +59,7 @@
       </tr>
       <tr class="filter">
         <th style="width: 300px;">
-          <p-columnFilter  type="date"  field="examDate"></p-columnFilter>
+          <p-columnFilter type="text" field="examDate"></p-columnFilter>
         </th>
         <!-- <th>
           <p-columnFilter type="text" field="examDate" >
@@ -70,9 +70,15 @@
                </ng-template>
           </p-columnFilter>
        </th> -->
-        <th></th>
-        <th></th>
-        <th></th>
+        <th >
+          <!-- <p-columnFilter type="text" field="presentCandidates"></p-columnFilter> -->
+        </th>
+        <th >
+          <!-- <p-columnFilter type="text" field="absentCandidates"></p-columnFilter> -->
+        </th>
+        <th style="width: 300px;">
+          <p-columnFilter type="text" field="status"></p-columnFilter>
+        </th>
         <th></th>
 
       </tr>
@@ -82,17 +88,20 @@
         <td>{{exam.examDate | date: 'dd-MMM-yyyy'}}</td>
         <td>
           {{exam.presentCandidates.length}}&nbsp;
-          <button pTooltip="View Present Candidates" tooltipPosition="bottom" class="btn btn-primary" (click)="openDialog(exam.id,exam.presentCandidates)"
-            [disabled]="exam.presentCandidates.length == 0"><i class="fa fa-solid fa-list"></i></button>
+          <button pTooltip="View Present Candidates" tooltipPosition="bottom" class="btn btn-primary"
+            (click)="openDialog(exam.id,exam.presentCandidates)" [disabled]="exam.presentCandidates.length == 0"><i
+              class="fa fa-solid fa-list"></i></button>
         </td>
         <td>
           {{exam.absentCandidates.length}}&nbsp;
-          <button pTooltip="View Absent Candidates" tooltipPosition="bottom" class="btn btn-danger" (click)="openDialog(exam.id,exam.absentCandidates)"
-            [disabled]="exam.absentCandidates.length == 0"><i class="fa fa-solid fa-list"></i></button>
+          <button pTooltip="View Absent Candidates" tooltipPosition="bottom" class="btn btn-danger"
+            (click)="openDialog(exam.id,exam.absentCandidates)" [disabled]="exam.absentCandidates.length == 0"><i
+              class="fa fa-solid fa-list"></i></button>
         </td>
         <td>{{exam.status}}</td>
         <td>
-          <button pTooltip="Reschedule Exam" tooltipPosition="bottom" class="btn btn-warning" (click)="openRescheduleDialog(exam.id)">
+          <button pTooltip="Reschedule Exam" tooltipPosition="bottom" class="btn btn-warning"
+            (click)="openRescheduleDialog(exam.id)">
             <i class="fa fa-pencil-square-o " style="scale: 2.0;"></i>
           </button>
         </td>

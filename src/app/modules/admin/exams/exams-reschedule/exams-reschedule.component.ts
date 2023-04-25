@@ -23,6 +23,7 @@ export class ExamsRescheduleComponent implements OnInit {
   technologies: Technology[] = [];
   previousExamId: number = 0;
   userId: string = '';
+  currentDate = new Date();
 
   constructor(
     private fb: FormBuilder,

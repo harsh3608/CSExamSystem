@@ -1,16 +1,16 @@
-td{
+td {
   font-size: medium;
 }
 
-th{
+th {
   font-size: small;
 }
 
-.table-header{
+.table-header {
   font-size: small;
 }
 
-filter{
+filter {
   height: 10px;
 }
 
@@ -29,4 +29,16 @@ p {
 .spinner {
   padding: 20%;
   padding-left: 44%;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action {
+  padding-left: 25%;
+  display: flex;
+  justify-content: start;
+  flex-shrink: 0;
 }

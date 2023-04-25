@@ -35,5 +35,7 @@ export class CandidateResultsListComponent implements OnInit {
 
   clear(table: Table) {
     table.clear();
+    const inputElement = document.getElementById('search') as HTMLInputElement;
+    inputElement.value = '';
   }
 }

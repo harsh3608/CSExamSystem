@@ -25,6 +25,7 @@ export class ExamsAddComponent implements OnInit {
   users: string[] = [];
   usernames: string[] = [];
   candidates: Candidate[] = [];
+  currentDate = new Date();
 
   constructor(
     private technologyService: TechnologyService,

@@ -20,6 +20,7 @@ export class RescheduleCandidateExamComponent implements OnInit {
   techs: number[] = [];
   technologies: Technology[] = [];
   rescheduleRequest! : RescheduleCandidateExam;
+  currentDate = new Date();
 
   constructor(
     private fb: FormBuilder,

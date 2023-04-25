@@ -28,7 +28,7 @@
       <div class="row mb-3">
         <div class="col">
           <label for="examDate" class="form-label">Exam Date</label>
-          <input type="date" class="form-control" id="examDate" formControlName="examDate">
+          <input type="date" class="form-control" id="examDate" formControlName="examDate" [min]="currentDate.toISOString().substring(0, 10)">
           <div class="form-text text-danger"
             *ngIf="examDate.errors?.['required'] && (examDate.touched || examDate.dirty)">
             Exam Date is Required !

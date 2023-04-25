@@ -17,16 +17,16 @@
         <div class="col" style="margin-top: 0.5%;">
           <span>Manage Questions</span>
         </div>
-        <div class="col action">
-          <p-button icon="pi pi-plus" routerLink="/questions-add" label="Add"></p-button>
+        <div class="col action ">
+          <p-button icon="pi pi-plus" pTooltip="Add Question" tooltipPosition="bottom" routerLink="/questions-add" label="Add"></p-button>
 
-          <span style="margin-left: 3%;" class="p-input-icon-left">
+          <span  class="p-input-icon-left ms-4">
             <i class="pi pi-search"></i>
             <input pInputText type="text" id="search" (input)="dt.filterGlobal($any($event.target).value, 'contains')"
               placeholder="Global Search" />
           </span>
 
-          <button style="margin-left: 3%;" pButton label="Clear" class="p-button-outlined " icon="pi pi-filter-slash"
+          <button  pButton label="Clear" class="p-button-outlined ms-4" icon="pi pi-filter-slash"
             (click)="clear(dt)"></button>
         </div>
 

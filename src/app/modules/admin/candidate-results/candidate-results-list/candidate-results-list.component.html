@@ -10,14 +10,14 @@
   <p-table #dt [value]="results" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="10"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-    [globalFilterFields]="['examDate', 'status' ]" [reorderableColumns]="true" sortField="examDate" [sortOrder]="-1">
+    [globalFilterFields]="['examDate', 'fullname' ]" [reorderableColumns]="true" sortField="examDate" [sortOrder]="-1">
 
     <ng-template pTemplate="caption">
       <div class="row table-header">
         <div class="col" style="margin-top: 0.5%;">
           <span>Exam Results</span>
         </div>
-        <div class="col" style=" padding-left: 25%; ">
+        <div class="col action" >
 
           <span style="margin-left: 3%;" class="p-input-icon-left">
             <i class="pi pi-search"></i>
@@ -25,7 +25,7 @@
               placeholder="Global Search" />
           </span>
 
-          <button style="margin-left: 3%;" pButton label="Clear" class="p-button-outlined " icon="pi pi-filter-slash"
+          <button  pButton label="Clear" class="p-button-outlined ms-4" icon="pi pi-filter-slash"
             (click)="clear(dt)"></button>
         </div>
 
