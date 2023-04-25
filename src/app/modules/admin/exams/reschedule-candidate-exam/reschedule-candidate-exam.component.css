@@ -1,6 +1,6 @@
 .parent {
   height: 500px;
-  width: 400px;
+  width: 420px;
   position: relative;
 }
 
@@ -20,7 +20,7 @@
   left: 0;
   height: 300px;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .footer {

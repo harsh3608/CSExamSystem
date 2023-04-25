@@ -2,15 +2,16 @@
   height: 500px;
   width: 400px;
   position: relative;
+  overflow: hidden;
 }
 
 .title {
   text-align: center;
-  margin-top: 5%;
+  /* margin-top: 5%; */
   position: absolute;
   top: 0;
   left: 0;
-  height: 100px;
+  height: 80px;
   width: 100%;
 }
 
@@ -20,20 +21,22 @@
   left: 0;
   height: 330px;
   width: 100%;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow-y: scroll;
 }
 
 .footer {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 80px;
+  height: 100px;
   width: 100%;
 }
 
 .blue {
   float: right;
   margin-right: 2%;
+  margin-bottom: 2%;
 }
 
 .red {

@@ -20,6 +20,7 @@ import { ExamsRescheduleComponent } from './exams/exams-reschedule/exams-resched
 import { CandidateResultsListComponent } from './candidate-results/candidate-results-list/candidate-results-list.component';
 import { CandidateResultDatailsComponent } from './candidate-results/candidate-result-datails/candidate-result-datails.component';
 import { RescheduleCandidateExamComponent } from './exams/reschedule-candidate-exam/reschedule-candidate-exam.component';
+import { AppComponent } from 'src/app/app.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { RescheduleCandidateExamComponent } from './exams/reschedule-candidate-e
   imports: [
     AdminRoutingModule,
     SharedModuleModule,
-  ]
+  ],
+  bootstrap:[AppComponent]
 })
 export class AdminModule { }
