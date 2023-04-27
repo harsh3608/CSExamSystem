@@ -41,6 +41,6 @@ p {
 .action {
   padding-left: 30%;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-shrink: 0;
 }
