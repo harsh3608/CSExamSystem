@@ -36,10 +36,7 @@ export class UserLoginComponent implements OnInit {
     this.title.setTitle('User Login');
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required,
-      Validators.minLength(6),
-      Validators.maxLength(15),
-      Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,15}')])
+      password: new FormControl('', [Validators.required])
     });
     this.authService.removeToken();
   }

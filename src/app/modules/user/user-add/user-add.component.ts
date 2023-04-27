@@ -105,10 +105,10 @@ export class UserAddComponent implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  logOut() {
-    this.authService.removeToken();
-    this.router.navigate(['']);
-  }
+  // logOut() {
+  //   this.authService.removeToken();
+  //   this.router.navigate(['']);
+  // }
 
   //Getter functions to get the form values from form-controls
   get userName(): FormControl {

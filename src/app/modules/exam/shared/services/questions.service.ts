@@ -10,38 +10,6 @@ export class QuestionsService {
 
   constructor(private http: HttpClient) { }
 
-  // //To get questions set from API by Technology ID
-  // getQuestionsByTechnologyId(id:number): Observable<QuestionsResponse> {
-  //   return this.http.get<QuestionsResponse>(questionsServerUrl+'/GetByTechnologyId?technologyId='+id+'&pageIndex=1&pageSize=15',
-  //    { headers: this.headers }
-  //   );
-  // }
-
-  // //to store candidate reponses temporarily in Local Storage
-  // storeUserResponse(response: SubmitExam) {
-  //   //To fetch responses from localstorage, (if exists )
-  //   const userResponses: SubmitExam[] = JSON.parse(localStorage.getItem("testResponses") || '[]');
-  //   let isResponse: Boolean = false;
-  //   //if array is not empty, interate through the elements
-  //   for (let i = 0; i < userResponses.length; i++) {
-  //     //if an element matches with current response, over write it
-  //     //and set boolean to true
-  //     if (userResponses[i].questionId == response.questionId) {
-  //       userResponses[i].candidateExamId = response.candidateExamId;
-  //       userResponses[i].selectedAnswerId = response.selectedAnswerId;
-  //       userResponses[i].userSelectedAnswer = response.userSelectedAnswer;
-
-  //       isResponse = true;
-  //     }
-  //   }
-  //   //If element is not over written, push the current response
-  //   if (!isResponse) {
-  //     userResponses.push(response);
-  //   }
-  //   //Finally, set the array in local storage
-  //   localStorage.setItem("testResponses", JSON.stringify(userResponses));
-  // }
-
   storeCheckedStatus(status: Status) {
 
     const statusArr: Status[] = JSON.parse(localStorage.getItem("status-array") || '[]');
@@ -77,9 +45,9 @@ export class QuestionsService {
     for (let i = 0; i < statusArr.length; i++) {
       if (statusArr[i].index == index) {
         answer.id = statusArr[i].id,
-          answer.optionId = statusArr[i].optionId,
-          answer.selected = statusArr[i].selected,
-          answer.candiateExamUserId = statusArr[i].candiateExamUserId
+        answer.optionId = statusArr[i].optionId,
+        answer.selected = statusArr[i].selected,
+        answer.candiateExamUserId = statusArr[i].candiateExamUserId
       };
     };
     return answer;
