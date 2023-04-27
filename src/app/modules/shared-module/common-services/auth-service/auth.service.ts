@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AES } from 'crypto-js';
 import * as CryptoJS from 'crypto-js';
 
@@ -7,8 +8,9 @@ import * as CryptoJS from 'crypto-js';
 })
 export class AuthService {
   secretKey: string = 'converge-solutions-2023';
+  jwtHelperService = new JwtHelperService();
 
-  constructor() { }
+  constructor( ) { }
 
   setToken(token: string,userId: string,role: string) {
     const eToken = AES.encrypt(token, this.secretKey).toString();
@@ -51,6 +53,15 @@ export class AuthService {
     localStorage.removeItem("access_token");
     localStorage.removeItem("user-id");
     localStorage.clear();
+  }
+
+  isRequestAuthorized() {
+    const token = this.getToken();
+    const expirytime = this.jwtHelperService.getTokenExpirationDate(token) || '';
+    if(expirytime > new Date){
+      return true;
+    }
+    return false
   }
 
 }
