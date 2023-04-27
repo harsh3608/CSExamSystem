@@ -13,15 +13,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   loginCandidate(user: UserLogin): Observable<ReturnResponse> {
-    return this.http.post<ReturnResponse>(userLoginServerUrl + '/SignIn', user);
+    return this.http.post<ReturnResponse>(userLoginServerUrl + '/SignIn', user, { headers: this.headers });
   }
 
   registerUser(user: User): Observable<UserAddReturnResponse> {
-    return this.http.post<UserAddReturnResponse>(candidateServerUrl+'/RegisterUser', user);
+    return this.http.post<UserAddReturnResponse>(candidateServerUrl+'/RegisterUser', user, { headers: this.headers });
   }
 
   getAllUsers(): Observable<CandidatesReturnResponse> {
-    return this.http.get<CandidatesReturnResponse>(candidateServerUrl+'/GetAllUsersAsync?pageIndex=1&pageSize=100')
+    return this.http.get<CandidatesReturnResponse>(candidateServerUrl+'/GetAllUsersAsync?pageIndex=1&pageSize=100', { headers: this.headers })
   }
 
 }
