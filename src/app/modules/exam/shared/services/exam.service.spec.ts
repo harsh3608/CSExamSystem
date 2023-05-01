@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ExamService } from './exam.service';
 import { ExamResponse, ExamTimeResponse, ExamUserStatus, ExamUserStatusResponse, FinishExamResponse } from '../models/exam.models';
 
-fdescribe('ExamService', () => {
+describe('ExamService', () => {
   let service: ExamService;
   let examResponse: ExamResponse = {
     statusCode: 0,

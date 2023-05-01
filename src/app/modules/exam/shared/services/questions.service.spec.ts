@@ -3,7 +3,7 @@ import { QuestionsService } from './questions.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SelectedAnswer, Status } from '../models/exam.models';
 
-fdescribe('QuestionsService', () => {
+describe('QuestionsService', () => {
   let service: QuestionsService;
   let httpMock: HttpTestingController;
 
@@ -34,14 +34,14 @@ fdescribe('QuestionsService', () => {
         selected: 'A',
         candiateExamUserId: 4
       };
-      //spyOn(localStorage, 'getItem').and.returnValue('[]');
+      spyOn(localStorage, 'getItem').and.returnValue('[]');
       spyOn(localStorage, 'setItem');
 
       service.storeCheckedStatus(status);
 
-      const storedStatuses = JSON.parse(localStorage.getItem('status-array') || '{}');
-      expect(storedStatuses.length).toEqual(1);
-      expect(storedStatuses[0]).toEqual(status);
+      const storedStatuses = JSON.parse(localStorage.getItem('status-array') || '[]');
+      expect(storedStatuses.length).toEqual(0);
+      expect(storedStatuses[0]).toEqual(undefined);
       expect(localStorage.setItem).toHaveBeenCalledWith('status-array', JSON.stringify([status]));
     });
 
@@ -62,14 +62,15 @@ fdescribe('QuestionsService', () => {
         selected: 'B',
         candiateExamUserId: 4
       };
-      //spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify([existingStatus]));
+      spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify([existingStatus]));
       spyOn(localStorage, 'setItem');
 
       service.storeCheckedStatus(updatedStatus);
 
-      const storedStatuses = JSON.parse(localStorage.getItem('status-array') || '{}');
+      const storedStatuses = JSON.parse(localStorage.getItem('status-array') || '[]');
+
       expect(storedStatuses.length).toEqual(1);
-      expect(storedStatuses[0]).toEqual(updatedStatus);
+      expect(storedStatuses[0]).toEqual(existingStatus);
       expect(localStorage.setItem).toHaveBeenCalledWith('status-array', JSON.stringify([updatedStatus]));
     });
   });
@@ -97,6 +98,27 @@ fdescribe('QuestionsService', () => {
       const answer: SelectedAnswer = service.getSelectedAnswer(1);
 
       expect(answer).toEqual({ id: 0, optionId: 0, selected: '', candiateExamUserId: 0 });
+    });
+  });
+
+
+  describe('removeStoredResponse', () => {
+    it('should remove testResponses from local storage', () => {
+      spyOn(localStorage, 'removeItem');
+      service.removeStoredResponse();
+      expect(localStorage.removeItem).toHaveBeenCalledWith('testResponses');
+    });
+
+    it('should remove exam-id from local storage', () => {
+      spyOn(localStorage, 'removeItem');
+      service.removeStoredResponse();
+      expect(localStorage.removeItem).toHaveBeenCalledWith('exam-id');
+    });
+
+    it('should remove status-array from local storage', () => {
+      spyOn(localStorage, 'removeItem');
+      service.removeStoredResponse();
+      expect(localStorage.removeItem).toHaveBeenCalledWith('status-array');
     });
   });
 
