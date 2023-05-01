@@ -22,7 +22,6 @@ export class QuestionsListComponent implements OnInit {
   experience: string[] = ['Beginner', 'Intermediate', 'Expert'];
   first: number = 0;
   rows: number = 10;
-  totalQuestions: number = 0;
   isLoading: boolean = true;
 
   constructor(
@@ -32,7 +31,9 @@ export class QuestionsListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //debugger;
     this.title.setTitle('Manage Questions');
+    //console.log(this.questions);
     this.questionsService.getAllQuestionsAsync().subscribe({
       next: (res) => {
         res.response.forEach(element => {
@@ -43,11 +44,14 @@ export class QuestionsListComponent implements OnInit {
             technologyVM: this.getTechById(element.technologyId)
           });
         });
-        this.totalQuestions = res.response.length;
+
+        //this.questions = res.response;
+        //console.log(this.questions);
       }
     });
-    //Timer for spinner
+    // Timer for spinner
     setTimeout(() => {
+
       this.isLoading = false;
     }, 1000);
 
