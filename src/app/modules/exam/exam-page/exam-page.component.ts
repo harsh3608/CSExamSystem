@@ -19,9 +19,9 @@ export class ExamPageComponent implements OnInit, OnDestroy {
   minutes: number = 40;
   seconds: number = 0;
   interval: any;
-  questionResponse!: QuestionsResponse;
+  //questionResponse!: QuestionsResponse;
   questions: CandidateExam[] = [];
-  que!: Question;
+  //que!: Question;
   length: number = 0;
   currentIndex: number = 0;
   isStartDisabled: boolean = false;
@@ -133,8 +133,6 @@ export class ExamPageComponent implements OnInit, OnDestroy {
         }
       }
     )
-
-
   }
 
   //Function to submit Test, which resets timer and test form
@@ -161,14 +159,14 @@ export class ExamPageComponent implements OnInit, OnDestroy {
                 this.router.navigate(['user-dashboard']);
                 this.questionsService.removeStoredResponse();
               }
-              //  else if (res.isSuccess && res.statusCode != 200) {
-              //   this.toastr.error('Exam Not Submitted!', 'Failure!', {
-              //     timeOut: 2000,
-              //   });
-              //   localStorage.removeItem("status-array");
-              //   this.router.navigate(['user-dashboard']);
-              //   this.questionsService.removeStoredResponse();
-              // }
+               else if (res.isSuccess && res.statusCode != 200) {
+                this.toastr.success('Exam Completed Successfully!', 'Success!', {
+                  timeOut: 2000,
+                });
+                localStorage.removeItem("status-array");
+                this.router.navigate(['user-dashboard']);
+                this.questionsService.removeStoredResponse();
+              }
             }
           );
         }

@@ -7,7 +7,7 @@
   <div class="timer ">
     <button class="btn btn-primary" (click)="startTest()" [disabled]="isStartDisabled">Start Test</button>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="badge rounded-pill bg-success"style="scale: 1.3;">
+    <span class="badge rounded-pill bg-success" style="scale: 1.3;">
       <i class="fa fa-clock-o" style="scale: 1.5;"></i>&nbsp; {{minutes}} : {{seconds}} mins. left
     </span>
     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -79,7 +79,8 @@
 
             <span style="float:left; font-size: 20px;">Question No.: {{currentIndex + 1}}</span>
 
-            <span style="font-size: 20px;">{{getTechById(item.question.technologyId)}}</span>
+            <!-- <span style="font-size: 20px;">{{getTechById(item.question.technologyId)}}</span> -->
+            <span style="font-size: 20px;">{{item.technology}}</span>
 
             <div style="float: right; scale: 0.9;">
               <button class="btn btn-secondary" [disabled]="currentIndex==0" (click)="decreaseIndex()">
@@ -108,9 +109,8 @@
           <div *ngFor="let option of item.question.options">
 
             <label>
-              <input type="radio"  value="{{ option.questionLabelOption }}"
-              (click)="optionChecked(item.id ,option.id ,option.questionLabelOption, item.candiateExamUserId)"
-              [checked]="option.questionLabelOption === getOptionValue()"  >
+              <input type="radio" value="{{ option.questionLabelOption }}" (click)="optionChecked(item.id ,option.id ,option.questionLabelOption,
+              item.candiateExamUserId)" [checked]="option.questionLabelOption === getOptionValue()">
               {{ option.questionOptionName }}
             </label>
           </div>
