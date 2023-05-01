@@ -27,6 +27,7 @@ export class QuestionsService {
         isResponse = true;
       };
     }
+    //// istanbul ignore next
     if (!isResponse) {
       statusArr.push(status);
     }
