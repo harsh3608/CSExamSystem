@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ExamRoutingModule } from './exam-routing.module';
 import { ExamPageComponent } from './exam-page/exam-page.component';
 import { SharedModuleModule } from '../shared-module/shared-module.module';
-
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,8 @@ import { SharedModuleModule } from '../shared-module/shared-module.module';
   ],
   imports: [
     ExamRoutingModule,
-    SharedModuleModule
+    SharedModuleModule,
+    QuillModule.forRoot()
   ]
 })
 export class ExamModule { }

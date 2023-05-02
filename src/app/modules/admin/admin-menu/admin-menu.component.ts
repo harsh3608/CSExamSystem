@@ -25,7 +25,7 @@ export class AdminMenuComponent implements OnInit{
     if(val) {
       this.authService.removeToken();
       this.router.navigate(['']);
-      this.toastr.warning('Pease, Login to continue !', 'Logged Out', {
+      this.toastr.success('Logged Out Successfully!', 'Success !', {
         timeOut: 2000,
       });
     }
