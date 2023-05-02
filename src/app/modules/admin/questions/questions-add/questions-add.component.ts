@@ -24,7 +24,7 @@ export class QuestionsAddComponent implements OnInit {
   experienceLevels = [
     'Beginner',
     'Intermediate',
-    'Expert'
+    'Experienced'
   ];
   alphabets: string[] = [];
   optCounts!: FormGroup;

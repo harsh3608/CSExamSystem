@@ -27,7 +27,7 @@ export class QuestionsUpdateComponent implements OnInit {
   experienceLevels = [
     'Beginner',
     'Intermediate',
-    'Expert'
+    'Experienced'
   ];
 
   constructor(
