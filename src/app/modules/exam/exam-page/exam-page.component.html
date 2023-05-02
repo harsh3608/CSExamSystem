@@ -106,14 +106,15 @@
 
           <p>Select one of the options below:</p>
 
-          <div *ngFor="let option of item.question.options">
-
+          <div class="border rounded-3 p-3 m-3" style="min-height: 60px; background-color: rgb(255, 255, 255);" *ngFor="let option of item.question.options">
             <label>
-              <input type="radio" value="{{ option.questionLabelOption }}" (click)="optionChecked(item.id ,option.id ,option.questionLabelOption,
+              <input style="scale: 1.2;" type="radio" value="{{ option.questionLabelOption }}" (click)="optionChecked(item.id ,option.id ,option.questionLabelOption,
               item.candiateExamUserId)" [checked]="option.questionLabelOption === getOptionValue()">
               {{ option.questionOptionName }}
             </label>
           </div>
+
+
         </div>
 
       </ng-container>
