@@ -22,8 +22,8 @@ export class QuestionsUpdateComponent implements OnInit {
   btnDisabled: boolean = false;
   question!: Question;
   optionsCount!: number;
-  isLoading:boolean=false;
-  qId!:number;
+  isLoading: boolean = false;
+  qId!: number;
   experienceLevels = [
     'Beginner',
     'Intermediate',
@@ -41,7 +41,7 @@ export class QuestionsUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLoading=true;
+    this.isLoading = true;
     this.title.setTitle('Update Question');
     this.techService.getAllTechnologies().subscribe({
       next: (res) => {
@@ -60,7 +60,10 @@ export class QuestionsUpdateComponent implements OnInit {
       createdOn: new FormControl(''),
       modifiedBy: new FormControl(''),
       lastModifiedOn: new FormControl(''),
-      options: this.fb.array([])
+      options: this.fb.array([]),
+      Technology: new FormControl('default'),
+      Active: new FormControl('Yes'),
+      ExperienceLevel: new FormControl('Expert')
     })
 
     this.route.paramMap.subscribe({
@@ -71,7 +74,7 @@ export class QuestionsUpdateComponent implements OnInit {
           setTimeout(() => {
             this.questionService.getQuestionsById(this.route.snapshot.params['id']).subscribe({
               next: (res) => {
-                res.response.options.forEach(element=> {
+                res.response.options.forEach(element => {
                   this.addOption();
                 });
                 this.question = res.response;
@@ -79,7 +82,7 @@ export class QuestionsUpdateComponent implements OnInit {
                 this.updateForm.patchValue(this.question);
               }
             });
-            this.isLoading=false;
+            this.isLoading = false;
           }, 1000);
 
         }
@@ -111,20 +114,20 @@ export class QuestionsUpdateComponent implements OnInit {
   }
 
 
-  removeOption(index:number) {
+  removeOption(index: number) {
     this.getOptions().removeAt(index);
   }
 
   //Function to be called when user clicks update button, which further calls api
   submitUpdateForm() {
-    console.log("update request " + this.updateForm.value);
+    console.log(this.updateForm.value);
     this.updateForm.markAllAsTouched();
     if (this.updateForm.valid) {
       this.updateRequest = this.updateForm.value;
       this.questionService.updateQuestion(this.updateRequest).subscribe({
         next: (res) => {
           if (res.isSuccess) {
-            this.toastr.success('Question Updated Successfully!', 'Success!',{
+            this.toastr.success('Question Updated Successfully!', 'Success!', {
               timeOut: 2000,
             });
             this.router.navigate(['/questions-list'])

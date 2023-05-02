@@ -11,9 +11,9 @@ export interface Question {
   timeSlot: number,
   isActive: boolean,
   options: Option[],
-  technology: string,
-  active: string,
-  experienceLevel: string
+  Technology?: string,
+  Active?: string,
+  ExperienceLevel?: string
 }
 
 export interface Option {

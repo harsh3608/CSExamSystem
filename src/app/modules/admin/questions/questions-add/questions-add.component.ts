@@ -57,7 +57,10 @@ export class QuestionsAddComponent implements OnInit {
       marks: new FormControl(1, [Validators.required]),
       timeSlot: new FormControl(1, [Validators.required]),
       isActive: new FormControl(true, [Validators.required]),
-      options: this.fb.array([])
+      options: this.fb.array([]),
+      technology: new FormControl('a'),
+      active: new FormControl('b'),
+      experienceLevel: new FormControl('c')
     });
     this.optCounts = this.fb.group({
       optionsCount: new FormControl('')
