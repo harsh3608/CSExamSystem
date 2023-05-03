@@ -23,7 +23,6 @@ export class ExamsCrudService {
   addUsers(users: string[]) {
     const encrUsers = AES.encrypt((JSON.stringify(users)), this.secretKey).toString();
     localStorage.setItem("selected-users", JSON.stringify(encrUsers));
-    console.log(encrUsers);
   }
 
   getAddedUsers() {
@@ -33,7 +32,7 @@ export class ExamsCrudService {
   }
 
   getScheduleList(): Observable<ScheduleResponse> {
-    return this.http.get<ScheduleResponse>(candidateExamServerUrl + '/ScheduleList?pageIndex=1&pageSize=100', { headers: this.headers });
+    return this.http.get<ScheduleResponse>(candidateExamServerUrl + '/ScheduleList?pageIndex=1&pageSize=500', { headers: this.headers });
   }
 
   rescheduleCandidateUserExam(exam: RescheduleCandidateExamUser): Observable<RescheduleCandidateExamUserResponse> {

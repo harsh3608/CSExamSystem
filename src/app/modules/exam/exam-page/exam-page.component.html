@@ -7,7 +7,7 @@
   <div class="timer ">
     <button class="btn btn-primary" (click)="startTest()" [disabled]="isStartDisabled">Start Test</button>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <span class="badge rounded-pill bg-success"style="scale: 1.3;">
+    <span class="badge rounded-pill bg-success" style="scale: 1.3;">
       <i class="fa fa-clock-o" style="scale: 1.5;"></i>&nbsp; {{minutes}} : {{seconds}} mins. left
     </span>
     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -79,7 +79,8 @@
 
             <span style="float:left; font-size: 20px;">Question No.: {{currentIndex + 1}}</span>
 
-            <span style="font-size: 20px;">{{getTechById(item.question.technologyId)}}</span>
+            <!-- <span style="font-size: 20px;">{{getTechById(item.question.technologyId)}}</span> -->
+            <span style="font-size: 20px;">{{item.technology}}</span>
 
             <div style="float: right; scale: 0.9;">
               <button class="btn btn-secondary" [disabled]="currentIndex==0" (click)="decreaseIndex()">
@@ -98,22 +99,31 @@
           </div>
         </div>
 
-        <div class="border p-3 mt-2 rounded-3" *ngIf="i == currentIndex">
-          <textarea disabled style="width: 100%; min-height: 270px;">
+        <div class="border p-3 mt-2 rounded-3" *ngIf="i == currentIndex" style="height: 430px;overflow-y: scroll;">
+          <!-- <textarea disabled style="width: 100%; min-height: 270px;">
             <pre><code>{{item.question.questionName}}</code></pre>
-          </textarea>
+          </textarea> -->
 
-          <p>Select one of the options below:</p>
+          <div class="border rounded-3 p-3 m-3 " style=" height: 270px; overflow-y: scroll; font-size: medium; background-color: rgb(250, 249, 249);">
+            <quill-view  [content]="item.question.questionName"></quill-view>
+          </div>
 
-          <div *ngFor="let option of item.question.options">
+          <!-- <pre><code>{{item.question.questionName}}</code></pre> -->
 
+          <div style="margin-left: 5vh;">
+            <p>Select one of the options below:</p>
+          </div>
+
+          <div class="border rounded-3 p-3 m-3" style="min-height: 60px; background-color: rgb(250, 249, 249);"
+            *ngFor="let option of item.question.options">
             <label>
-              <input type="radio"  value="{{ option.questionLabelOption }}"
-              (click)="optionChecked(item.id ,option.id ,option.questionLabelOption, item.candiateExamUserId)"
-              [checked]="option.questionLabelOption === getOptionValue()"  >
+              <input style="scale: 1.2;" type="radio" value="{{ option.questionLabelOption }}" (click)="optionChecked(item.id ,option.id ,option.questionLabelOption,
+              item.candiateExamUserId)" [checked]="option.questionLabelOption === getOptionValue()">
               {{ option.questionOptionName }}
             </label>
           </div>
+
+
         </div>
 
       </ng-container>

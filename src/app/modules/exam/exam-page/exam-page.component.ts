@@ -19,9 +19,9 @@ export class ExamPageComponent implements OnInit, OnDestroy {
   minutes: number = 40;
   seconds: number = 0;
   interval: any;
-  questionResponse!: QuestionsResponse;
+  //questionResponse!: QuestionsResponse;
   questions: CandidateExam[] = [];
-  que!: Question;
+  //que!: Question;
   length: number = 0;
   currentIndex: number = 0;
   isStartDisabled: boolean = false;
@@ -133,13 +133,12 @@ export class ExamPageComponent implements OnInit, OnDestroy {
         }
       }
     )
-
-
   }
 
   //Function to submit Test, which resets timer and test form
   submitTest() {
-
+    //To update the status of current question
+    this.submitResponse(this.currentIndex);
     // To update exam end time
     this.examService.updateExamTime(this.candidateExamId, false).subscribe(
       (res) => {
@@ -150,7 +149,6 @@ export class ExamPageComponent implements OnInit, OnDestroy {
           this.minutes = 0;
           this.seconds = 0;
 
-          this.submitResponse(this.currentIndex);
           this.examService.finishExam(this.userId).subscribe(
             (res) => {
               if (res.isSuccess && res.statusCode == 200) {
@@ -161,14 +159,14 @@ export class ExamPageComponent implements OnInit, OnDestroy {
                 this.router.navigate(['user-dashboard']);
                 this.questionsService.removeStoredResponse();
               }
-              //  else if (res.isSuccess && res.statusCode != 200) {
-              //   this.toastr.error('Exam Not Submitted!', 'Failure!', {
-              //     timeOut: 2000,
-              //   });
-              //   localStorage.removeItem("status-array");
-              //   this.router.navigate(['user-dashboard']);
-              //   this.questionsService.removeStoredResponse();
-              // }
+               else if (res.isSuccess && res.statusCode != 200) {
+                this.toastr.success('Exam Completed Successfully!', 'Success!', {
+                  timeOut: 2000,
+                });
+                localStorage.removeItem("status-array");
+                this.router.navigate(['user-dashboard']);
+                this.questionsService.removeStoredResponse();
+              }
             }
           );
         }

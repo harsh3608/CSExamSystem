@@ -13,7 +13,7 @@ export class ResultService {
   constructor(private http: HttpClient) { }
 
   getCandidateResultList(): Observable<CandidateResultResponse> {
-    return this.http.get<CandidateResultResponse>(candidateExamServerUrl + '/CandidateResultList?pageIndex=1&pageSize=100', { headers: this.headers });
+    return this.http.get<CandidateResultResponse>(candidateExamServerUrl + '/CandidateResultList?pageIndex=1&pageSize=500', { headers: this.headers });
   }
 
   getCandidateResultDetails(id: number, userId: string):Observable<ResultDetailsResponse> {

@@ -13,7 +13,7 @@ export class QuestionsCrudService {
   constructor(private http: HttpClient) { }
 
   getAllQuestionsAsync(): Observable<QuestionsResponse> {
-    return this.http.get<QuestionsResponse>(questionsServerUrl+'/GetAllAsync?pageIndex=1&pageSize=100', { headers: this.headers });
+    return this.http.get<QuestionsResponse>(questionsServerUrl+'/GetAllAsync?pageIndex=1&pageSize=500', { headers: this.headers });
   }
 
   addNewQuestion(question: Question): Observable<QuestionReturnResponse> {

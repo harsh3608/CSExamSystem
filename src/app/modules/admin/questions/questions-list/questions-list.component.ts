@@ -4,8 +4,6 @@ import { Question, } from 'src/app/modules/shared-module/models/question.model';
 import { Table } from 'primeng/table';
 import { Title } from '@angular/platform-browser';
 import { TechnologyService } from 'src/app/modules/shared-module/common-services/technology-service/technology.service';
-import { Technology } from 'src/app/modules/user/shared/models/technology.model';
-import { ExperienceLevels } from 'src/app/modules/shared-module/common-enums';
 
 @Component({
   selector: 'app-questions-list',
@@ -16,13 +14,9 @@ export class QuestionsListComponent implements OnInit {
   questions: Question[] = [];
   loading: boolean = false;
   @ViewChild('dt') table!: Table;
-  technologies: Technology[] = [];
   tech: string = '';
-  levels = ExperienceLevels;
-  experience: string[] = ['Beginner', 'Intermediate', 'Expert'];
   first: number = 0;
   rows: number = 10;
-  totalQuestions: number = 0;
   isLoading: boolean = true;
 
   constructor(
@@ -33,46 +27,24 @@ export class QuestionsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Manage Questions');
-    this.questionsService.getAllQuestionsAsync().subscribe({
-      next: (res) => {
-        res.response.forEach(element => {
-          this.questions.push({
-            ...element,
-            isActiveVM: element.isActive ? "Yes" : "No",
-            experienceLevelVM: this.getExperienceLevels(element.experienceLevelId),
-            technologyVM: this.getTechById(element.technologyId)
-          });
-        });
-        this.totalQuestions = res.response.length;
-      }
-    });
-    //Timer for spinner
-    setTimeout(() => {
+    this.getQuestions();
+     // Timer for spinner
+     setTimeout(() => {
+
       this.isLoading = false;
-    }, 1000);
+    }, 2000);
 
-    this.technologyService.getAllTechnologies().subscribe({
-      next: (res) => {
-        this.technologies = res.response;
+  }
+
+  getQuestions() {
+    this.questionsService.getAllQuestionsAsync().subscribe( (res) => {
+        if(res.isSuccess){
+          this.questions = res.response;
+          //console.log(this.questions);
+        };
       }
-    });
-
+    );
   }
-
-  getTechById(id: number): string {
-    this.technologies.map(element => {
-      if (id == element.id) {
-        this.tech = element.technologyName;
-      };
-    })
-    return this.tech;
-  }
-
-  getExperienceLevels(id: number) {
-    return this.levels[id - 1];
-  }
-
-
 
   clear(table: Table) {
     table.clear();

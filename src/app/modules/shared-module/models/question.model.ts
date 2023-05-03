@@ -1,19 +1,19 @@
 export interface Question {
-  createdBy: string
-  createdOn: string
-  modifiedBy: string
-  lastModifiedOn: string
-  id: number
-  technologyId: number
-  experienceLevelId: number
-  questionName: string
-  marks: number
-  timeSlot: number
-  isActive: boolean
-  options: Option[]
-  isActiveVM?: string
-  experienceLevelVM?: string
-  technologyVM?: string
+  createdBy: string,
+  createdOn: string,
+  modifiedBy: string,
+  lastModifiedOn: string,
+  id: number,
+  technologyId: number,
+  experienceLevelId: number,
+  questionName: string,
+  marks: number,
+  timeSlot: number,
+  isActive: boolean,
+  options: Option[],
+  Technology?: string,
+  Active?: string,
+  ExperienceLevel?: string
 }
 
 export interface Option {

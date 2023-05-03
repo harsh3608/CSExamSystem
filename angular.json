@@ -31,7 +31,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["crypto-js"]
+            "allowedCommonJsDependencies": ["crypto-js", "quill"]
           },
           "configurations": {
             "production": {
@@ -88,7 +88,9 @@
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js",
+            "codeCoverage": true
           }
         }
       }
