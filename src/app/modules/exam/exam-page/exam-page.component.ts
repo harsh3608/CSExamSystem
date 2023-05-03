@@ -137,7 +137,8 @@ export class ExamPageComponent implements OnInit, OnDestroy {
 
   //Function to submit Test, which resets timer and test form
   submitTest() {
-
+    //To update the status of current question
+    this.submitResponse(this.currentIndex);
     // To update exam end time
     this.examService.updateExamTime(this.candidateExamId, false).subscribe(
       (res) => {
@@ -148,7 +149,6 @@ export class ExamPageComponent implements OnInit, OnDestroy {
           this.minutes = 0;
           this.seconds = 0;
 
-          this.submitResponse(this.currentIndex);
           this.examService.finishExam(this.userId).subscribe(
             (res) => {
               if (res.isSuccess && res.statusCode == 200) {
