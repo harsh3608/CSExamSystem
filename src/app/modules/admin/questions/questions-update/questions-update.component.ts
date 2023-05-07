@@ -120,7 +120,7 @@ export class QuestionsUpdateComponent implements OnInit {
 
   //Function to be called when user clicks update button, which further calls api
   submitUpdateForm() {
-    console.log(this.updateForm.value);
+    //console.log(this.updateForm.value);
     this.updateForm.markAllAsTouched();
     if (this.updateForm.valid) {
       this.updateRequest = this.updateForm.value;
