@@ -64,7 +64,7 @@ export interface SelectedAnswer {
 export interface FinishExamResponse {
   statusCode: number
   isSuccess: boolean
-  response: Response
+  response: Result
   message: string
   exceptionMessage: string
 }

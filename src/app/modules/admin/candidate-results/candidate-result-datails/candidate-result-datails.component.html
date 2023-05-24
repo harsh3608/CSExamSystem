@@ -14,9 +14,9 @@
     <div class="mt-2 mb-3">
       <span class="badge btn rounded-pill bg-primary" (click)="showAllQuestions()">Total Questions:
         {{resultResponse.length}}</span>
-      <span class="badge btn rounded-pill bg-success" (click)="showCorrectQuestions()">Correctly Answered:
+      <span class="badge btn rounded-pill bg-success" (click)="showCorrectQuestions()">Correct:
         {{correct.length}}</span>
-      <span class="badge btn rounded-pill bg-danger" (click)="showWrongQuestions()">Wrongly Answered:
+      <span class="badge btn rounded-pill bg-danger" (click)="showWrongQuestions()">Wrong:
         {{wrong.length}}</span>
     </div>
   </div>
@@ -45,9 +45,9 @@
 
           <span style="float: right; scale: 1.4;" class="badge bg-warning">Marks: {{item.marks}}</span>
         </div>
-        <textarea disabled style="width: 100%; min-height: 200px;">
-        <pre><code>{{item.question}}</code></pre>
-      </textarea>
+        <div class="border rounded-3 p-3 m-3 " style=" height: 270px; overflow-y: scroll; font-size: medium; background-color: rgb(250, 249, 249);">
+          <quill-view  [content]="item.question"></quill-view>
+        </div>
 
         <div>
           <span style="scale: 1.4; margin-left: 2%; margin-right: 3%" class="badge  bg-primary mt-3 mb-2">Correct
@@ -62,7 +62,7 @@
           </span>
           <span *ngIf="!item.isCorrect && !item.userSelectedAnswer" style="scale: 1.4; margin-left: 3%; margin-right: 5%"
             class="badge  bg-danger mt-2 mb-2">
-            No Answer Selected
+            Skipped
           </span>
         </div>
 

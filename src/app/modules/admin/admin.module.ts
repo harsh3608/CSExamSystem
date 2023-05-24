@@ -21,6 +21,7 @@ import { CandidateResultsListComponent } from './candidate-results/candidate-res
 import { CandidateResultDatailsComponent } from './candidate-results/candidate-result-datails/candidate-result-datails.component';
 import { RescheduleCandidateExamComponent } from './exams/reschedule-candidate-exam/reschedule-candidate-exam.component';
 import { AppComponent } from 'src/app/app.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AppComponent } from 'src/app/app.component';
   imports: [
     AdminRoutingModule,
     SharedModuleModule,
+    QuillModule.forRoot()
   ],
   bootstrap:[AppComponent]
 })
