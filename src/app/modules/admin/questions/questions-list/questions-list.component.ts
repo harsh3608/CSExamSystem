@@ -28,19 +28,13 @@ export class QuestionsListComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Manage Questions');
     this.getQuestions();
-     // Timer for spinner
-     setTimeout(() => {
-
-      this.isLoading = false;
-    }, 2000);
-
   }
 
   getQuestions() {
     this.questionsService.getAllQuestionsAsync().subscribe( (res) => {
         if(res.isSuccess){
           this.questions = res.response;
-          //console.log(this.questions);
+          this.isLoading = false;
         };
       }
     );
