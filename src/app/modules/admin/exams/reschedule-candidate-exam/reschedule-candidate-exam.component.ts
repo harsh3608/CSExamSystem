@@ -19,7 +19,11 @@ export class RescheduleCandidateExamComponent implements OnInit {
   rescheduleForm!: FormGroup;
   techs: number[] = [];
   technologies: Technology[] = [];
-  rescheduleRequest! : RescheduleCandidateExam;
+  rescheduleRequest : RescheduleCandidateExam={
+    id: 0,
+    examDate: '',
+    technologies: [],
+  };
   currentDate = new Date();
 
   constructor(
@@ -40,7 +44,7 @@ export class RescheduleCandidateExamComponent implements OnInit {
     this.rescheduleForm = this.fb.group({
       id: new FormControl(this.data.candidateExamId),
       examDate: new FormControl('', [Validators.required]),
-      technologies: new FormControl(this.techs)
+      technologies: new FormControl(this.techs),
     });
   }
 
@@ -81,7 +85,7 @@ export class RescheduleCandidateExamComponent implements OnInit {
   }
 
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
   get examDate(): FormControl {

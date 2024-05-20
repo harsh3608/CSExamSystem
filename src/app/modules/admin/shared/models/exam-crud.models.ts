@@ -47,5 +47,5 @@ export interface RescheduleCandidateExamUser {
 export interface RescheduleCandidateExam {
   id: number
   examDate: string
-  technologies: number[]
+  technologies: number[],
 }

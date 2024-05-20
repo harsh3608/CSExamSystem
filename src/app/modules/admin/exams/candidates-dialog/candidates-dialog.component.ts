@@ -28,15 +28,17 @@ export class CandidatesDialogComponent implements OnInit {
   }
 
   openDialog(candidateExamId: number, userId: string, name: string) {
-    this.dialogRef.close();
+    //this.dialogRef.close();
     //debugger
     const dialogRef = this.dialog.open(ExamsRescheduleComponent,
       {
-        data: { candidateExamId: candidateExamId, userId: userId, username:name }
+        data: { candidateExamId: candidateExamId, userId: userId, username: name }
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-
+      if (result) {
+        this.dialogRef.close(true);
+      }
     });
   }
 
