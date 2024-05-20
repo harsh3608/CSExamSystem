@@ -49,7 +49,7 @@ export class ExamsListComponent implements OnInit {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      //this.getExamsList();
+      this.getExamsList();
     });
   }
 
@@ -59,7 +59,7 @@ export class ExamsListComponent implements OnInit {
         data: { candidateExamId: id }
       });
     dialogRef.afterClosed().subscribe(result => {
-      //this.getExamsList();
+      this.getExamsList();
     });
   }
 

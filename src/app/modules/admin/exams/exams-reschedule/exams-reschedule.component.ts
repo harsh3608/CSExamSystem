@@ -62,6 +62,7 @@ export class ExamsRescheduleComponent implements OnInit {
     this.rescheduleForm.markAllAsTouched();
     if (this.rescheduleForm.valid) {
       this.rescheduleRequest = this.rescheduleForm.value;
+      this.rescheduleRequest.userList.push(this.data.userId);
       this.examService.rescheduleCandidateUserExam(this.rescheduleRequest).subscribe({
         next: (res) => {
           if (res.isSuccess == true) {
@@ -83,7 +84,7 @@ export class ExamsRescheduleComponent implements OnInit {
   }
 
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 
 
